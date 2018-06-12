@@ -1,6 +1,7 @@
 const obs = new OBSWebSocket();
 
 $( "#connect" ).click(function() {
+    $("#grenouille_scenes").empty();
     var address = `${$( "#hostname" ).val()}:${$( "#port" ).val()}`
     console.log(`Trying to connect to ${address}...`);
     obs.connect({ address: address, password: $( "#password" ).val() })
