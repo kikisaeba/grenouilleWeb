@@ -13,6 +13,7 @@ $( "#connect" ).click(function() {
             var tmp_button = $('<button/>', {
               text: scene.name,
               id: scene.name,
+              type: 'button',
               click: function () {
                 obs.setCurrentScene({'scene-name': this.id});
               }
@@ -34,4 +35,4 @@ obs.on('error', err => {
   console.error('socket error:', err);
 });
 
-$('#url').val(document.location.href);
+$('#url').val(`${document.location.hostname}:4444`);
