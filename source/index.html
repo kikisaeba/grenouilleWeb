@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>grenouilleWeb</title>
+  </head>
+  <body>
+    <script src="./node_modules/obs-websocket-js/dist/obs-websocket.js"></script>
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <form>
+      OBS Websocket server's url:
+      <br>
+      <input type="text" id="url" >
+      <br>
+      Password:
+      <br>
+      <input type="password" id="password">
+      <br>
+      <button type=button id="connect">Connect</button>
+    </form>
+    <br>
+    <br>
+    <form id="grenouille_scenes">
+      Scenes:
+      <br>
+    </form>
+    <script src="./assets/js/grenouilleWeb.js"></script>
+  </body>
+</html>
