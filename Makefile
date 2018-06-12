@@ -1,6 +1,4 @@
-name=grenouille-web
-version=0.1
-image=$(name):$(version)
+name=grenouilleweb
 port=10005
 
 
@@ -10,14 +8,13 @@ default:
 	make run
 
 build:
-	docker build -t $(image) .
+	docker build -t $(name) .
 
 run:
-	docker run -p $(port):80 -d --name $(name) --restart always $(image)
+	docker run -p $(port):80 -d --name $(name) --restart always $(name)
 
 logs:
 	docker logs -f $(name)
 
 clean:
 	docker rm -f $(name)
-	docker rmi $(shell docker images --quiet --filter "dangling=true")
