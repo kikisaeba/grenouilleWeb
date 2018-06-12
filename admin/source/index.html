@@ -7,21 +7,21 @@
   <body>
     <script src="./node_modules/obs-websocket-js/dist/obs-websocket.js"></script>
     <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <h2>OBS Websocket authentication</h2>
     <form>
-      OBS Websocket server's url:
-      <br>
-      <input type="text" id="url" >
-      <br>
+      Hostname:
+      <input type="text" id="hostname"><br><br>
+      Port:
+      <input type="number" name="port" min="1" max="65535" value="4444"><br><br>
       Password:
-      <br>
-      <input type="password" id="password">
-      <br>
+      <input type="password" id="password"><br><br>
       <button type=button id="connect">Connect</button>
     </form>
     <br>
     <br>
     <form id="grenouille_scenes">
       Scenes:
+      <br>
       <br>
     </form>
     <script src="./assets/js/grenouilleWeb.js"></script>

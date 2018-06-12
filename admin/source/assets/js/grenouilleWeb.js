@@ -1,7 +1,9 @@
 const obs = new OBSWebSocket();
 
 $( "#connect" ).click(function() {
-    obs.connect({ address: $( "#url" ).val(), password: $( "#password" ).val() })
+    var address = `${$( "#hostname" ).val()}:${$( "#port" ).val()}`
+    console.log(`Trying to connect to ${address}...`);
+    obs.connect({ address: address, password: $( "#password" ).val() })
       .then(() => {
         console.log('Success! You are connected & authenticated.');
         return obs.getSceneList();
@@ -19,6 +21,8 @@ $( "#connect" ).click(function() {
               }
             });
             $("#grenouille_scenes").append(tmp_button);
+            $("#grenouille_scenes").append($('<br/>', {}));
+            $("#grenouille_scenes").append($('<br/>', {}));
         });
       })
       .catch(err => {
@@ -35,4 +39,4 @@ obs.on('error', err => {
   console.error('socket error:', err);
 });
 
-$('#url').val(`${document.location.hostname}:4444`);
+$('#hostname').val(document.location.hostname);
