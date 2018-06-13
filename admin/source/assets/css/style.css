@@ -1,0 +1,41 @@
+html {
+    background-color: lightgray;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    font-family: Avantgarde, sans-serif;
+}
+
+body {
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+
+#console {
+    background-color: black;
+    color: green;
+    font-family: monospace;
+    font-weight: bold;
+    height: 300px;
+    margin: 20px;
+    padding: 10px;
+    padding-top: 0px;
+    overflow-y: auto;
+}
+
+.scene_button {
+    margin: 5px;
+    font-size: 150%;
+    font-family: monospace;
+
+}
+
+.control_button {
+    margin: 5px;
+    font-size: 150%;
+}
