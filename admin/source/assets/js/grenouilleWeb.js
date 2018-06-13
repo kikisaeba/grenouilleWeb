@@ -20,11 +20,11 @@ const obs = new OBSWebSocket();
 
 $( "#start_record" ).click(function() {
   obs.StartRecording();
-}
+});
 
 $( "#stop_record" ).click(function() {
   obs.StopRecording();
-}
+});
 
 $( "#connect" ).click(function() {
     $("#grenouille_scenes").empty();
