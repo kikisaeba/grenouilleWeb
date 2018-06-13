@@ -39,3 +39,11 @@ body {
     margin: 5px;
     font-size: 150%;
 }
+
+#port {
+    width: 70px;
+}
+
+#hostname {
+    width: 300px;
+}
