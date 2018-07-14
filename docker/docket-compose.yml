@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  grenouilleweb:
+    image: grenouilleweb
+    container_name: "grenouilleweb"
+    build:
+      context: ..
+      dockerfile: docker/grenouilleweb/Dockerfile
+    ports:
+      - '10005:80'
