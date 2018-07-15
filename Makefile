@@ -7,10 +7,10 @@ dev-run:
 
 build:
 	ng build --prod
-	docker-compose -p grenouille -f docker/docker-compose.yml build
+	docker-compose -p grenouilleweb -f docker/docker-compose.yml build
 
 prod-start: build
-	docker-compose -p grenouille -f docker/docker-compose.yml up --build -d
+	docker-compose -p grenouilleweb -f docker/docker-compose.yml up --build -d
 
 prod-stop:
-	docker-compose -p grenouille -f docker/docker-compose.yml down
+	docker-compose -p grenouilleweb -f docker/docker-compose.yml down

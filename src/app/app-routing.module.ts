@@ -5,7 +5,8 @@ import { ObsControlComponent } from "./obs-control/obs-control.component"
 import { VodManageComponent} from "./vod-manage/vod-manage.component";
 
 const routes: Routes = [
-  { path: '',  component: IndexComponent },
+  { path: '', redirectTo: '/index', pathMatch: 'full' },
+  { path: 'index',  component: IndexComponent },
   { path: 'obs_control',  component: ObsControlComponent },
   { path: 'vod_manage',  component: VodManageComponent}
 ];

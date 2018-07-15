@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="sidebar col-md-2 d-none d-md-block bg-light">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/index" routerLinkActive="active">
+              Index
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="tokens.isLogged()">
+            <a class="nav-link" routerLink="/obs_control" routerLinkActive="active">
+              OBSControls
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="tokens.isLogged()">
+            <a class="nav-link" routerLink="/vod_manage" routerLinkActive="active">
+              VODControls
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

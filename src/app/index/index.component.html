@@ -1,3 +1,12 @@
+<div *ngIf="!tokens.isLogged()">
+  Connectez vous avec Steam. <button (click)="login()">Login</button>
+</div>
+
+<div *ngIf="tokens.isLogged()">
+  Vous êtes connecté. <button (click)="logout()">Logout</button> &nbsp;
+</div>
+
 <p>
-  index works!
+  {{tokens.refreshToken}}<br />
+  {{tokens.authToken}}<br />
 </p>

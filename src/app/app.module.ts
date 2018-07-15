@@ -8,13 +8,15 @@ import { AppRoutingModule } from './/app-routing.module';
 import { IndexComponent } from './index/index.component';
 import { ObsControlComponent } from './obs-control/obs-control.component';
 import { VodManageComponent } from './vod-manage/vod-manage.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
     ObsControlComponent,
-    VodManageComponent
+    VodManageComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

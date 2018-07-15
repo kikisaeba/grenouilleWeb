@@ -1,34 +1,14 @@
-<nav class="header navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+<div class="header navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/">GrenouilleWeb</a>
-</nav>
+</div>
 
-<div class="left_menu container-fluid">
+<app-sidebar></app-sidebar>
+
+<div class="container">
   <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/">
-              Index
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/obs_control">
-              OBSControls
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/vod_manage">
-              VODControls
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <main class="main col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div class="main col-md-10 offset-md-2">
       <router-outlet></router-outlet>
-    </main>
+    </div>
   </div>
 </div>
 
