@@ -1,12 +1,14 @@
-<div *ngIf="!tokens.isLogged()">
-  Connectez vous avec Steam. <button (click)="login()">Login</button>
+<div *ngIf="!userService.isLogged()">
+  Connectez vous avec Steam. <button mat-raised-button (click)="login()">Login</button>
 </div>
 
-<div *ngIf="tokens.isLogged()">
-  Vous êtes connecté. <button (click)="logout()">Logout</button> &nbsp;
+<div *ngIf="userService.isLogged()">
+  Vous êtes connecté avec le steamid <a href="https://steamcommunity.com/profiles/{{userService.steam_id}}">{{userService.steam_id}}</a>.
+  <button mat-raised-button (click)="logout()">Logout</button> <br />
+  Vous avez accès aux scopes: "<span *ngFor="let scope of userService.scopes">{{scope}} </span>"
 </div>
 
 <p>
-  {{tokens.refreshToken}}<br />
-  {{tokens.authToken}}<br />
+  {{tokenService.refreshToken}}<br />
+  {{tokenService.authToken}}<br />
 </p>

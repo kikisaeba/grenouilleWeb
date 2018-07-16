@@ -8,12 +8,17 @@
               Index
             </a>
           </li>
-          <li class="nav-item" *ngIf="tokens.isLogged()">
+          <li class="nav-item" *ngIf="userService.isLogged() && userService.hasScope('user_control')">
+            <a class="nav-link" routerLink="/user_control" routerLinkActive="active">
+              Users
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="userService.isLogged() && userService.hasScope('obs_control')">
             <a class="nav-link" routerLink="/obs_control" routerLinkActive="active">
               OBSControls
             </a>
           </li>
-          <li class="nav-item" *ngIf="tokens.isLogged()">
+          <li class="nav-item" *ngIf="userService.isLogged() && userService.hasScope('vod_manage')">
             <a class="nav-link" routerLink="/vod_manage" routerLinkActive="active">
               VODControls
             </a>

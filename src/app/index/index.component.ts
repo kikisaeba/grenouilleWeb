@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { TokensService } from "../tokens.service";
+import {environment} from "../../environments/environment";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-index',
@@ -12,17 +14,20 @@ export class IndexComponent implements OnInit {
   authToken: string = '';
 
   constructor(
-    public tokens: TokensService,
+    public tokenService: TokensService,
+    public userService: UserService
   ) { }
 
   ngOnInit() {
-  }
-
-  login() {
-    this.tokens.login();
+    console.log('test');
   }
 
   logout() {
-    this.tokens.logout();
+    this.tokenService.clean_tokens();
   }
+
+  login() {
+    location.href = environment.baseUrl + '/api/auth/login/steam';
+  }
+
 }

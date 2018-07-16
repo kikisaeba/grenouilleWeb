@@ -4,12 +4,11 @@ export interface APIResult {
   payload: Object;
 }
 
-class PayloadGetAuth {
+export class APIResultAuthTokenGet {
   token: string;
 }
 
-export class APIResultGetAuth implements APIResult {
-  success: string;
-  error: string;
-  payload: PayloadGetAuth;
+export class APIResultUserMeDetails {
+  steam_id: number;
+  scopes: string[];
 }

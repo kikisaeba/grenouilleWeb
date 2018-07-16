@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TokensService } from "../tokens.service";
+import {UserService} from "../user.service";
 
 
 @Component({
@@ -11,7 +11,7 @@ import { TokensService } from "../tokens.service";
 export class SidebarComponent implements OnInit {
 
   constructor(
-    public tokens: TokensService
+    public userService: UserService
   ) { }
 
   ngOnInit() {
