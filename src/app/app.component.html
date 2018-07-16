@@ -1,13 +1,17 @@
-<div class="header navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/">GrenouilleWeb</a>
-</div>
-
-<app-sidebar></app-sidebar>
-
 <div class="container">
-  <div class="row">
-    <div class="main col-md-10 offset-md-2">
+  <mat-toolbar color="primary" class="toolbar">
+    <h1>GrenouilleWeb</h1>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+
+    <mat-sidenav class="sidenav" opened mode="side">
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
       <router-outlet></router-outlet>
-    </div>
-  </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
 </div>
