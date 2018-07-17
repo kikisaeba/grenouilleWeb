@@ -1,1 +1,14 @@
-obs-control works!
+<h1>Juno OBS Controls</h1>
+<button mat-raised-button (click)="refreshUI()">Refresh</button> &nbsp; &nbsp;
+<span *ngIf="error_text!=undefined" class="error_text">{{error_text}}</span>
+<br /><br />
+
+<h4>Status</h4>
+<mat-slide-toggle [(ngModel)]="statusStreamingUI" (change)="changeStreaming()">Streaming</mat-slide-toggle> &nbsp; &nbsp;
+<mat-slide-toggle [(ngModel)]="statusRecordingUI" (change)="changeRecording()">Recording</mat-slide-toggle>
+<br /><br />
+
+<h4>Scenes</h4>
+<mat-radio-group [(ngModel)]="activeSceneUI" (change)="changeScene()">
+  <mat-radio-button *ngFor="let scene of scenes" [value]="scene">{{scene}} &nbsp; &nbsp;</mat-radio-button>
+</mat-radio-group>
