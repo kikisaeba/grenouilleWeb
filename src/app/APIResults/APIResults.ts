@@ -9,7 +9,7 @@ export class APIResultAuthTokenGet {
 }
 
 export class APIResultUserMeDetails {
-  steam_id: number;
+  steam_id: string;
   scopes: string[];
 }
 
@@ -21,4 +21,12 @@ export class APIResultOBSSceneList {
 export class APIResultOBSStatus {
   recording: boolean;
   streaming: boolean;
+}
+
+export class APIResultUserScopeList {
+  total: number;
+  users: {
+    id: string;
+    scopes: string[];
+  }[];
 }

@@ -18,9 +18,7 @@ export class IndexComponent implements OnInit {
     public userService: UserService
   ) { }
 
-  ngOnInit() {
-    console.log('test');
-  }
+  ngOnInit() {}
 
   logout() {
     this.tokenService.clean_tokens();

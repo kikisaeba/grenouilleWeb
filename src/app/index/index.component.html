@@ -3,12 +3,9 @@
 </div>
 
 <div *ngIf="userService.isLogged()">
-  Vous êtes connecté avec le steamid <a href="https://steamcommunity.com/profiles/{{userService.steam_id}}">{{userService.steam_id}}</a>.
-  <button mat-raised-button (click)="logout()">Logout</button> <br />
-  Vous avez accès aux scopes: "<span *ngFor="let scope of userService.scopes">{{scope}} </span>"
+  Vous êtes connecté avec le SteamID(64bits) suivant: {{userService.steam_id}} <br />
+  <span *ngIf="userService.scopes.length != 0">Vous avez accès aux droits suivants: <span *ngFor="let scope of userService.scopes">{{scope}} </span></span>
+  <span *ngIf="userService.scopes.length === 0">Vous n'avez accès à aucun droit.</span>
 </div>
 
-<p>
-  {{tokenService.refreshToken}}<br /> <br />
-  {{tokenService.authToken}}<br />
-</p>
+<br /><button mat-raised-button (click)="logout()">Logout</button>

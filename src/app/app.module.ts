@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatSlideToggleModule, MatRadioModule, } from "@angular/material";
+import {MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatSlideToggleModule, MatRadioModule, MatTableModule, MatCheckboxModule, MatPaginatorModule} from "@angular/material";
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './/app-routing.module';
@@ -28,7 +28,7 @@ import {UserControlComponent} from './user-control/user-control.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatSlideToggleModule, MatRadioModule
+    MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatSlideToggleModule, MatRadioModule, MatTableModule, MatCheckboxModule, MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

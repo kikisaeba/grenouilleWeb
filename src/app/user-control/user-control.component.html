@@ -1,1 +1,33 @@
-user-control works!
+<div class="refresh_button">
+  <button mat-raised-button (click)="refreshUI()">Refresh</button> &nbsp; &nbsp;
+  <span *ngIf="error_text!=undefined" class="error_text">{{error_text}}</span>
+</div> <br />
+
+<div class="userTable">
+  <table mat-table [dataSource]="usersData" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> SteamID (64bits) </th>
+      <td mat-cell *matCellDef="let element"><a href="https://steamcommunity.com/profiles/{{element.id}}">{{element.id}}</a></td>
+    </ng-container>
+
+    <ng-container matColumnDef="user_scope">
+      <th mat-header-cell *matHeaderCellDef> USERS </th>
+      <td mat-cell *matCellDef="let element"><mat-checkbox (change)="onCheck($event, element.id, 'user_scope')" [(ngModel)]="element.user_scope"></mat-checkbox></td>
+    </ng-container>
+
+    <ng-container matColumnDef="obs_control">
+      <th mat-header-cell *matHeaderCellDef> OBS </th>
+      <td mat-cell *matCellDef="let element"><mat-checkbox (change)="onCheck($event, element.id, 'obs_control')" [(ngModel)]="element.obs_control"></mat-checkbox></td>
+    </ng-container>
+
+    <ng-container matColumnDef="vod_manage">
+      <th mat-header-cell *matHeaderCellDef> VOD </th>
+      <td mat-cell *matCellDef="let element"><mat-checkbox (change)="onCheck($event, element.id, 'vod_manage')" [(ngModel)]="element.vod_manage"></mat-checkbox></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumn"></tr>
+  </table>
+  <mat-paginator (page)="onPage($event)" [pageIndex]="pageIndex"[pageSize]="pageSize" [length]="totalDisplay" [pageSizeOptions]="[10, 30, 50]" showFirstLastButtons></mat-paginator>
+</div>

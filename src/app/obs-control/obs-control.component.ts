@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 
 import {APIResult, APIResultOBSSceneList, APIResultOBSStatus} from "../APIResults/APIResults";
 import {environment} from "../../environments/environment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-obs-control',
@@ -24,11 +25,16 @@ export class ObsControlComponent implements OnInit {
   error_text = '';
 
   constructor(
+    private router: Router,
     private http: HttpClient,
     private tokenService: TokensService
   ) {}
 
   ngOnInit() {
+    if (this.tokenService.refreshToken == undefined) {
+      this.router.navigate(['/index']);
+      return;
+    }
     if (this.tokenService.authToken != undefined)
       this.refreshUI();
     this.tokenService.newAuthToken.subscribe(isValid => {

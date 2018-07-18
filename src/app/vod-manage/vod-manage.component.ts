@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
+import {TokensService} from "../tokens.service";
 
 @Component({
   selector: 'app-vod-manage',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VodManageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private tokenService: TokensService
+  ) {}
 
   ngOnInit() {
+    if (this.tokenService.refreshToken == undefined) {
+      this.router.navigate(['/index']);
+      return;
+    }
   }
 
 }
