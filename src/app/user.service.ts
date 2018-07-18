@@ -9,7 +9,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class UserService {
 
-  steam_id: number = undefined;
+  steam_id: string = undefined;
   scopes: string[] = undefined;
 
   constructor(
