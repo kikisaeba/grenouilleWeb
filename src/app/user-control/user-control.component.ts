@@ -93,13 +93,10 @@ export class UserControlComponent implements OnInit {
     };
 
     this.http.post<APIResult>(environment.baseUrl + '/api/auth/user/scope/' + url, payload, this.tokenService.getAuthTokenHeader() ).subscribe(json => {
-      console.log(json);
       if (json.success === 'no') {
         event.source.checked = !event.source.checked;
         this.error_text = json.error;
       }
     });
-    console.log(id);
-    console.log(scope);
   }
 }

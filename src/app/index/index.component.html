@@ -7,6 +7,6 @@
   <span *ngIf="userService.scopes.length != 0">Vous avez accès aux droits suivants: <span *ngFor="let scope of userService.scopes">{{scope}} </span></span>
   <span *ngIf="userService.scopes.length === 0">Vous n'avez accès à aucun droit.</span>
 
-  <br /><button mat-raised-button (click)="logout()">Logout</button>
+  <br /><br /><button mat-raised-button (click)="logout()">Logout</button>
 </div>
 

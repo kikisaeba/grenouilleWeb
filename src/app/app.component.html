@@ -3,17 +3,14 @@
     <h1>GrenouilleWeb</h1>
   </mat-toolbar>
 
-  <mat-sidenav-container class="sidenav-container">
+  <div class="sidenav-container">
 
-    <mat-sidenav class="sidenav" opened mode="side">
+    <div class="sidenav">
       <app-sidebar></app-sidebar>
-    </mat-sidenav>
+    </div>
 
-
-
-    <mat-sidenav-content class="content-container">
+    <div class="content">
       <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-
+    </div>
+  </div>
 </div>

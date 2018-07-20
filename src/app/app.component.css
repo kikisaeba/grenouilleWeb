@@ -1,20 +1,21 @@
-body {
-  margin: 0 0 0 0;
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-
-.container {
-
+.sidenav-container {
+  display:  flex;
+  flex-direction: row;
+  flex-grow:  1;
 }
 
 .sidenav {
   width: 150px;
+  border-right: #bebebe 1px solid;
 }
 
-.sidenav-container {
-  flex: 1;
-}
-
-.content-container {
+.content {
   padding: 15px;
+  flex-grow:  1;
 }

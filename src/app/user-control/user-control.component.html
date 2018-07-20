@@ -4,6 +4,7 @@
 </div> <br />
 
 <div class="userTable">
+  <mat-paginator (page)="onPage($event)" [pageIndex]="pageIndex" [pageSize]="pageSize" [length]="totalDisplay" [pageSizeOptions]="[10, 30, 50]" showFirstLastButtons></mat-paginator>
   <table mat-table [dataSource]="usersData" class="mat-elevation-z8">
 
     <ng-container matColumnDef="id">
@@ -29,5 +30,5 @@
     <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
     <tr mat-row *matRowDef="let row; columns: displayColumn"></tr>
   </table>
-  <mat-paginator (page)="onPage($event)" [pageIndex]="pageIndex"[pageSize]="pageSize" [length]="totalDisplay" [pageSizeOptions]="[10, 30, 50]" showFirstLastButtons></mat-paginator>
+  <mat-paginator (page)="onPage($event)" [pageIndex]="pageIndex" [pageSize]="pageSize" [length]="totalDisplay" [pageSizeOptions]="[10, 30, 50]" showFirstLastButtons></mat-paginator>
 </div>
