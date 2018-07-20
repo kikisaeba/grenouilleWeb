@@ -1,7 +1,7 @@
 <h1>Juno OBS Controls</h1>
-<button mat-raised-button (click)="refreshUI()">Refresh</button> &nbsp; &nbsp;
-<span *ngIf="error_text!=undefined" class="error_text">{{error_text}}</span>
-<br /><br />
+<div class="refresh_button">
+  <button mat-raised-button (click)="refreshUI()">Refresh</button> &nbsp; &nbsp;<span *ngIf="error_text!=undefined" class="error_text">{{error_text}}</span>
+</div>
 
 <h4>Status</h4>
 <mat-slide-toggle [(ngModel)]="statusStreamingUI" (change)="changeStreaming()">Streaming</mat-slide-toggle> &nbsp; &nbsp;
@@ -12,3 +12,37 @@
 <mat-radio-group [(ngModel)]="activeSceneUI" (change)="changeScene()">
   <mat-radio-button *ngFor="let scene of scenes" [value]="scene">{{scene}} &nbsp; &nbsp;</mat-radio-button>
 </mat-radio-group>
+
+<h4>Playlist de rediffusion</h4>
+<h5>Actuelle</h5>
+<div class="playlist_buttons">
+  {{ obs_playlist[obs_playlist_selected] }} &nbsp;
+  <button mat-icon-button (click)="upFileInPlaylist()" *ngIf="obs_playlist_selected != undefined">
+    <mat-icon>arrow_drop_up</mat-icon>
+  </button>
+  <button mat-icon-button (click)="downFileInPlaylist()" *ngIf="obs_playlist_selected != undefined">
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <button mat-icon-button (click)="removeFileFromPlaylist()" *ngIf="obs_playlist_selected != undefined">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <button mat-icon-button><mat-icon style="visibility: hidden">delete</mat-icon></button>
+</div>
+<div class="playlist_live">
+  <ul>
+    <li *ngFor="let file of obs_playlist; let i = index" (click)="obs_playlist_selected = i" [class.selected]="i === obs_playlist_selected">{{file}}</li>
+  </ul>
+</div>
+<h5>Fichiers disponibles</h5>
+<div class="playlist_files_buttons">
+  {{ obs_files[obs_files_selected] }} &nbsp;
+  <button mat-icon-button (click)="addSelectedToPlaylist()" *ngIf="obs_files_selected != undefined">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button mat-icon-button><mat-icon style="visibility: hidden">delete</mat-icon></button>
+</div>
+<div class="playlist_files">
+  <ul>
+    <li *ngFor="let file of obs_files; let i = index" (click)="obs_files_selected = i" [class.selected]="i === obs_files_selected">{{file}}</li>
+  </ul>
+</div>

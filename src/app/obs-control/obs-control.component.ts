@@ -2,7 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {TokensService} from "../tokens.service";
 import {HttpClient} from "@angular/common/http";
 
-import {APIResult, APIResultOBSSceneList, APIResultOBSStatus} from "../APIResults/APIResults";
+import {
+  APIResult,
+  APIResultOBSPlaylistGet,
+  APIResultOBSSceneList,
+  APIResultOBSStatus,
+  APIResultVODFileList
+} from "../APIResults/APIResults";
 import {environment} from "../../environments/environment";
 import {Router} from "@angular/router";
 
@@ -21,6 +27,10 @@ export class ObsControlComponent implements OnInit {
   statusStreamingUI: boolean = false;
   statusRecordingUI: boolean = false;
   activeSceneUI: string = '';
+  obs_playlist: string[] = [];
+  obs_playlist_selected = undefined;
+  obs_files: string[] = [];
+  obs_files_selected = undefined;
 
   error_text = '';
 
@@ -54,6 +64,10 @@ export class ObsControlComponent implements OnInit {
     this.statusStreamingUI = false;
     this.statusRecordingUI = false;
     this.activeSceneUI = '';
+    this.obs_playlist = [];
+    this.obs_playlist_selected = undefined;
+    this.obs_files = [];
+    this.obs_files_selected = undefined;
     this.error_text = undefined;
   }
 
@@ -61,6 +75,7 @@ export class ObsControlComponent implements OnInit {
     this.error_text = undefined;
     this.updateSceneList();
     this.updateOBSStatus();
+    this.updateOBSPlaylist();
   }
 
   updateSceneList() {
@@ -137,6 +152,83 @@ export class ObsControlComponent implements OnInit {
         this.error_text = json.error;
       }
     });
+  }
+
+
+  updateOBSPlaylist() {
+    this.http.get<APIResult>(environment.baseUrl + '/api/obs/playlist/get', this.tokenService.getAuthTokenHeader()).subscribe(json => {
+      if (json.success === 'yes') {
+        this.error_text = undefined;
+        let payload = (<APIResultOBSPlaylistGet> json.payload);
+        this.obs_playlist = payload.files;
+      } else {
+        this.error_text = json.error;
+      }
+    });
+    this.http.get<APIResult>(environment.baseUrl + '/api/vod/file/list', this.tokenService.getAuthTokenHeader()).subscribe(json => {
+      if (json.success === 'yes') {
+        this.error_text = undefined;
+        let payload = (<APIResultVODFileList> json.payload);
+        this.obs_files = [];
+        for (let file in payload.vod) {
+          if (payload.vod[file].type === 'file') {
+            this.obs_files.push(payload.vod[file].filename);
+          }
+        }
+      } else {
+        this.error_text = json.error;
+      }
+    });
+  }
+
+  pushNewOBSPlaylist() {
+    let payload = {'files': this.obs_playlist};
+    this.http.post<APIResult>(environment.baseUrl + '/api/obs/playlist/update', payload , this.tokenService.getAuthTokenHeader()).subscribe(json => {
+      if (json.success === 'yes') {
+        this.error_text = undefined;
+      } else {
+        this.error_text = json.error;
+      }
+    });
+  }
+
+  addSelectedToPlaylist() {
+    if (this.obs_files_selected === undefined) return;
+
+    this.obs_playlist.push(this.obs_files[this.obs_files_selected]);
+    this.pushNewOBSPlaylist();
+  }
+
+  upFileInPlaylist() {
+    if (this.obs_playlist_selected === undefined) return;
+    if (this.obs_playlist_selected === 0) return;
+
+    let save = this.obs_playlist[this.obs_playlist_selected - 1];
+    this.obs_playlist[this.obs_playlist_selected - 1] = this.obs_playlist[this.obs_playlist_selected];
+    this.obs_playlist[this.obs_playlist_selected] = save;
+    this.obs_playlist_selected--;
+
+    this.pushNewOBSPlaylist();
+  }
+
+  downFileInPlaylist() {
+    if (this.obs_playlist_selected === undefined) return;
+    if (this.obs_playlist_selected === this.obs_playlist.length-1) return;
+
+    let save = this.obs_playlist[this.obs_playlist_selected + 1];
+    this.obs_playlist[this.obs_playlist_selected + 1] = this.obs_playlist[this.obs_playlist_selected];
+    this.obs_playlist[this.obs_playlist_selected] = save;
+    this.obs_playlist_selected++;
+
+    this.pushNewOBSPlaylist();
+  }
+
+  removeFileFromPlaylist() {
+    if (this.obs_playlist_selected === undefined) return;
+    this.obs_playlist.splice(this.obs_playlist_selected, 1);
+    this.obs_playlist_selected = undefined;
+
+    this.pushNewOBSPlaylist();
   }
 
 }

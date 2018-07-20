@@ -30,3 +30,15 @@ export class APIResultUserScopeList {
     scopes: string[];
   }[];
 }
+
+export class APIResultVODFileList {
+  vod: {
+    filename: string;
+    type: string;
+    size: number;
+  }[];
+}
+
+export class APIResultOBSPlaylistGet {
+  files: string[];
+}

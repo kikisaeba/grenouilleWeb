@@ -1,0 +1,24 @@
+.refresh_button {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error_text {
+  color:red;
+}
+
+.directoryTree {
+  width: 49%;
+}
+
+.directoryTree-invisible {
+  display: none;
+}
+
+.directoryTree ul,
+.directoryTree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}

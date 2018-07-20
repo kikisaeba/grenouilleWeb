@@ -1,9 +1,10 @@
 
 <mat-nav-list>
-  <mat-nav-list>
-    <a mat-list-item routerLink="/index" routerLinkActive="active">Index</a>
-    <a mat-list-item *ngIf="userService.hasScope('user_control')" routerLink="/user_control" routerLinkActive="active">Users</a>
-    <a mat-list-item *ngIf="userService.hasScope('obs_control')" routerLink="/obs_control" routerLinkActive="active">OBSControls</a>
-    <a mat-list-item *ngIf="userService.hasScope('vod_manage')" routerLink="/vod_manage" routerLinkActive="active">VODManage</a>
-  </mat-nav-list>
+  <mat-divider></mat-divider>
+  <a mat-list-item routerLink="/index" routerLinkActive="active">Index</a>
+  <mat-divider></mat-divider>
+  <a mat-list-item *ngIf="userService.hasScope('user_control')" routerLink="/user_control" routerLinkActive="active">Users</a>
+  <a mat-list-item *ngIf="userService.hasScope('obs_control')" routerLink="/obs_control" routerLinkActive="active">OBSControls</a>
+  <a mat-list-item *ngIf="userService.hasScope('vod_manage')" routerLink="/vod_manage" routerLinkActive="active">VODManage</a>
+  <mat-divider></mat-divider>
 </mat-nav-list>
