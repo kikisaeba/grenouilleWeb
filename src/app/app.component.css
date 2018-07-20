@@ -1,6 +1,6 @@
 .container {
-  height: 100%;
   display: flex;
+  min-height: 100%;
   flex-direction: column;
 }
 
@@ -10,9 +10,16 @@
   flex-grow:  1;
 }
 
+.toolbar {
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
 .sidenav {
   width: 150px;
   border-right: #bebebe 1px solid;
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
 .content {
