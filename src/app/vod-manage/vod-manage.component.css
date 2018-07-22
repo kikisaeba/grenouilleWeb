@@ -9,7 +9,7 @@
 }
 
 .directoryTree {
-  width: 49%;
+  width: 75%;
 }
 
 .directoryTree-invisible {
@@ -21,4 +21,12 @@
   margin-top: 0;
   margin-bottom: 0;
   list-style-type: none;
+}
+
+.selected {
+  color:blue;
+}
+
+.name-change-input {
+  width: 250px;
 }

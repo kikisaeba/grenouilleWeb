@@ -7,6 +7,7 @@
 .sidenav-container {
   display:  flex;
   flex-direction: row;
+  align-items: stretch;
   flex-grow:  1;
 }
 

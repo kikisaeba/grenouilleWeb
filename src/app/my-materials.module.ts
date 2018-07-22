@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import {MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule,
-  MatSlideToggleModule, MatRadioModule, MatTableModule, MatCheckboxModule, MatPaginatorModule,
-  MatTreeModule} from "@angular/material";
+  MatSlideToggleModule, MatRadioModule, MatTableModule, MatCheckboxModule, MatPaginatorModule, MatTooltipModule,
+  MatTreeModule, MatInputModule} from "@angular/material";
 
 
 @NgModule({
@@ -17,7 +17,9 @@ import {MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSide
     MatTableModule,
     MatCheckboxModule,
     MatPaginatorModule,
-    MatTreeModule
+    MatTreeModule,
+    MatTooltipModule,
+    MatInputModule
   ],
   exports: [
     MatMenuModule,
@@ -31,7 +33,9 @@ import {MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSide
     MatTableModule,
     MatCheckboxModule,
     MatPaginatorModule,
-    MatTreeModule
+    MatTreeModule,
+    MatTooltipModule,
+    MatInputModule
   ],
   declarations: []
 })

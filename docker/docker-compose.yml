@@ -4,6 +4,7 @@ services:
   grenouilleweb:
     image: grenouilleweb
     container_name: "grenouilleweb"
+    restart: always
     build:
       context: ..
       dockerfile: docker/grenouilleweb/Dockerfile
