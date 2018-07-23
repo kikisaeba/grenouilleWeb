@@ -157,7 +157,14 @@ export class ObsControlComponent implements OnInit {
   }
 
   restartRTMP() {
-
+    let payload = {};
+    this.http.post<APIResult>(environment.baseUrl + '/api/obs/rtmp/restart', payload , this.tokenService.getAuthTokenHeader()).subscribe(json => {
+      if (json.success === 'yes') {
+        this.error_text = undefined;
+      } else {
+        this.error_text = json.error;
+      }
+    });
   }
 
   updateOBSPlaylist() {
