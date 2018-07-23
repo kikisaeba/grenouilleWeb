@@ -1,12 +1,32 @@
+<h1>Index</h1>
+
 <div *ngIf="!userService.isLogged()">
-  Connectez vous avec Steam. <button mat-raised-button (click)="login()">Login</button>
+  <div>
+    Les fonctionnalités sont disponibles en vous connectant avec Steam.
+  </div>
+
+  <br />
+
+  <div class="div-centered">
+    <button mat-raised-button (click)="login()">Login</button>
+  </div>
 </div>
 
 <div *ngIf="userService.isLogged()">
-  Vous êtes connecté avec le SteamID(64bits) suivant: {{userService.steam_id}} <br />
-  <span *ngIf="userService.scopes.length != 0">Vous avez accès aux droits suivants: <span *ngFor="let scope of userService.scopes">{{scope}} </span></span>
-  <span *ngIf="userService.scopes.length === 0">Vous n'avez accès à aucun droit.</span>
+  <div>
+    Vous êtes connecté avec le SteamID(64bits) suivant: {{userService.steam_id}} <br /> <br />
+    <span *ngIf="userService.scopes.length != 0">Vous avez accès aux droits suivants:
+      <ul>
+        <li *ngFor="let scope of userService.scopes">{{scope}}</li>
+      </ul>
+    </span>
+    <span *ngIf="userService.scopes.length === 0">Vous n'avez accès à aucun droit.</span>
+  </div>
 
-  <br /><br /><button mat-raised-button (click)="logout()">Logout</button>
+  <br />
+
+  <div class="div-centered">
+    <button mat-raised-button (click)="logout()">Logout</button>
+  </div>
 </div>
 

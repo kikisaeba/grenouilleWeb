@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {TokensService} from "../tokens.service";
 import {APIResult, APIResultUserScopeList} from "../APIResults/APIResults";
 import {environment} from "../../environments/environment";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-user-control',
@@ -12,7 +13,7 @@ import {environment} from "../../environments/environment";
 })
 export class UserControlComponent implements OnInit {
 
-  displayColumn = ['id', 'user_scope', 'obs_control', 'vod_manage'];
+  displayColumn = ['id', 'user_scope', 'obs_control', 'vod_manage', 'vod_delete', 'stats_manage', 'stats_manage_scene'];
   usersData = [];
   totalDisplay: number = 0;
   pageSize: number = 10;
@@ -22,8 +23,9 @@ export class UserControlComponent implements OnInit {
 
   constructor(
     private router: Router,
-      private http: HttpClient,
-      private tokenService: TokensService
+    private http: HttpClient,
+    private tokenService: TokensService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -65,7 +67,10 @@ export class UserControlComponent implements OnInit {
             id: user.id,
             user_scope: user.scopes.indexOf('user_scope') >= 0,
             obs_control: user.scopes.indexOf('obs_control') >= 0,
-            vod_manage: user.scopes.indexOf('vod_manage') >= 0
+            vod_manage: user.scopes.indexOf('vod_manage') >= 0,
+            vod_delete: user.scopes.indexOf('vod_delete') >= 0,
+            stats_manage: user.scopes.indexOf('stats_manage') >= 0,
+            stats_manage_scene: user.scopes.indexOf('stats_manage_scene') >= 0
           };
           new_data.push(user_data);
         }

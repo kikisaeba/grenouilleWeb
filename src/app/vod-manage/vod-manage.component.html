@@ -1,3 +1,5 @@
+<h1>Gestion des VODs</h1>
+
 <div class="refresh_button">
   <button mat-raised-button (click)="refreshUI()">Refresh</button> &nbsp; &nbsp;
   <span *ngIf="error_text!=undefined" class="error_text">{{error_text}}</span>
@@ -25,10 +27,12 @@
             <button mat-icon-button (click)="cancelEdit()"
                     matTooltip="Annuler le changement de nom."><mat-icon>cancel</mat-icon></button>
           </span>
-          <button mat-icon-button (click)="moveSelect()" *ngIf="moveSelection != node && deleteConfirmation === undefined && editSelection === undefined"
+          <button mat-icon-button (click)="moveSelect()"
+                  *ngIf="moveSelection != node && deleteConfirmation === undefined && editSelection === undefined"
                   matTooltip="Sélectionner ce fichier pour déplacement."><mat-icon>arrow_upward</mat-icon>
           </button>
-          <button mat-icon-button (click)="deleteSelection()" *ngIf="editSelection === undefined"
+          <button mat-icon-button (click)="deleteSelection()"
+                  *ngIf="editSelection === undefined && userService.hasScope('vod_delete')"
                   matTooltip="Supprimer ce fichier."><mat-icon>delete</mat-icon></button>
           <span *ngIf="deleteConfirmation != undefined">Confirmer suppression
             <button mat-icon-button (click)="validateDelete()"
@@ -47,7 +51,7 @@
           <span [class.selected]="node === file_selected" (click)="selectNode(node)">{{node.filename}}</span>
             <span *ngIf="file_selected === node"> &nbsp;
 
-              <button mat-icon-button (click)="createNewDirectory()"
+              <button mat-icon-button (click)="createNewDirectory()" *ngIf="userService.hasScope('vod_delete')"
                       matTooltip="Créer un nouveau dossier."><mat-icon>add</mat-icon>
               </button>
               <span *ngIf="newDirectoryName != undefined">
@@ -62,7 +66,9 @@
 
               <button mat-icon-button (click)="moveDrop()" *ngIf="moveSelection != undefined && newDirectoryName === undefined"
                       matTooltip="Déplacer la selection dans ce dossier."><mat-icon>arrow_downward</mat-icon></button>
-              <button mat-icon-button *ngIf="node.children.length === 0 && newDirectoryName === undefined" (click)="deleteSelection()"
+              <button mat-icon-button
+                      *ngIf="node.children.length === 0 && newDirectoryName === undefined && userService.hasScope('vod_delete')"
+                      (click)="deleteSelection()"
                       matTooltip="Supprimer ce dossier."><mat-icon>delete</mat-icon></button>
               <span *ngIf="deleteConfirmation != undefined">Confirmer suppression
             <button mat-icon-button (click)="validateDelete()"

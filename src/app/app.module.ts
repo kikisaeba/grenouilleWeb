@@ -12,6 +12,9 @@ import {ObsControlComponent} from './obs-control/obs-control.component';
 import {VodManageComponent} from './vod-manage/vod-manage.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import {UserControlComponent} from './user-control/user-control.component';
+import {StatsCsvComponent} from "./stats-csv/stats-csv.component";
+import {StatsGlobalComponent} from "./stats-global/stats-global.component";
+import {StatsSceneComponent} from "./stats-scene/stats-scene.component";
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import {UserControlComponent} from './user-control/user-control.component';
     ObsControlComponent,
     VodManageComponent,
     SidebarComponent,
-    UserControlComponent
+    UserControlComponent,
+    StatsCsvComponent,
+    StatsGlobalComponent,
+    StatsSceneComponent
   ],
   imports: [
     BrowserModule,

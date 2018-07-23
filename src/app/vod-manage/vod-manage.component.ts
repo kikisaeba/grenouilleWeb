@@ -7,6 +7,7 @@ import {environment} from "../../environments/environment";
 import {NestedTreeControl} from "@angular/cdk/tree";
 import {MatTreeNestedDataSource} from "@angular/material";
 import {of} from "rxjs/internal/observable/of";
+import {UserService} from "../user.service";
 
 class FileNode {
   children: FileNode[];
@@ -71,7 +72,8 @@ export class VodManageComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private tokenService: TokensService
+    private tokenService: TokensService,
+    public userService: UserService
   ) {
     this.treeControl = new NestedTreeControl<FileNode>(this._getChildren);
     this.treeData = new MatTreeNestedDataSource();

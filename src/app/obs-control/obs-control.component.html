@@ -1,46 +1,70 @@
 <h1>Juno OBS Controls</h1>
-<div class="refresh_button">
+<div class="div-centered">
   <button mat-raised-button (click)="refreshUI()">Refresh</button> &nbsp; &nbsp;<span *ngIf="error_text!=undefined" class="error_text">{{error_text}}</span>
 </div>
 
 <h4>Status</h4>
-<mat-slide-toggle [(ngModel)]="statusStreamingUI" (change)="changeStreaming()">Streaming</mat-slide-toggle> &nbsp; &nbsp;
-<mat-slide-toggle [(ngModel)]="statusRecordingUI" (change)="changeRecording()">Recording</mat-slide-toggle>
-<br /><br />
+<div class="div-centered">
+  <mat-slide-toggle [(ngModel)]="statusStreamingUI"
+                    (change)="changeStreaming()"
+                    matTooltip="Si jamais il faut couper le stream à la main.">Streaming</mat-slide-toggle> &nbsp; &nbsp;
+  <mat-slide-toggle [(ngModel)]="statusRecordingUI"
+                    (change)="changeRecording()"
+                    matTooltip="Démarrer le stream sur le RTMP démarre le record automatiquement, mais le contrôle manuel peut être utile pour la découpe de VOD.">Recording</mat-slide-toggle>
+  &nbsp; &nbsp;
+  <button mat-raised-button (click)="restartRTMP()"
+          matTooltip="ATTENTION AVEC CE BOUTON" color="warn">Restart RTMP</button>
+</div>
 
 <h4>Scenes</h4>
 <mat-radio-group [(ngModel)]="activeSceneUI" (change)="changeScene()">
-  <mat-radio-button *ngFor="let scene of scenes" [value]="scene">{{scene}} &nbsp; &nbsp;</mat-radio-button>
+  <mat-radio-button *ngFor="let scene of scenes" [value]="scene">
+    <span *ngIf="scene === 'Waiting'" matTooltip="Scene à activer pour arrêter la rediffusion.">{{scene}}</span>
+    <span *ngIf="scene === 'Rediff'" matTooltip="Scene à activer pour démarrer la rediffusion.">{{scene}}</span>
+    <span *ngIf="scene != 'Waiting' && scene!= 'Rediff'">{{scene}}</span>
+    &nbsp; &nbsp;</mat-radio-button>
 </mat-radio-group>
 
 <h4>Playlist de rediffusion</h4>
+
 <h5>Actuelle</h5>
-<div class="playlist_buttons">
+<div class="div-centered">
   {{ obs_playlist[obs_playlist_selected] }} &nbsp;
-  <button mat-icon-button (click)="upFileInPlaylist()" *ngIf="obs_playlist_selected != undefined">
+  <button mat-icon-button (click)="upFileInPlaylist()"
+          *ngIf="obs_playlist_selected != undefined"
+          matTooltip="Remonter dans la playlist.">
     <mat-icon>arrow_drop_up</mat-icon>
   </button>
-  <button mat-icon-button (click)="downFileInPlaylist()" *ngIf="obs_playlist_selected != undefined">
+  <button mat-icon-button (click)="downFileInPlaylist()"
+          *ngIf="obs_playlist_selected != undefined"
+          matTooltip="Descendre dans la playlist.">
     <mat-icon>arrow_drop_down</mat-icon>
   </button>
-  <button mat-icon-button (click)="removeFileFromPlaylist()" *ngIf="obs_playlist_selected != undefined">
+  <button mat-icon-button (click)="removeFileFromPlaylist()"
+          *ngIf="obs_playlist_selected != undefined"
+          matTooltip="Supprimer de la playlist.">
     <mat-icon>delete</mat-icon>
   </button>
   <button mat-icon-button><mat-icon style="visibility: hidden">delete</mat-icon></button>
 </div>
+
 <div class="playlist_live">
   <ul>
     <li *ngFor="let file of obs_playlist; let i = index" (click)="obs_playlist_selected = i" [class.selected]="i === obs_playlist_selected">{{file}}</li>
   </ul>
 </div>
+
 <h5>Fichiers disponibles</h5>
-<div class="playlist_files_buttons">
+<div class="div-centered">
   {{ obs_files[obs_files_selected] }} &nbsp;
-  <button mat-icon-button (click)="addSelectedToPlaylist()" *ngIf="obs_files_selected != undefined">
+  <button mat-icon-button (click)="addSelectedToPlaylist()"
+          *ngIf="obs_files_selected != undefined"
+          matTooltip="Ajouter en fin de la playlist.">
     <mat-icon>add</mat-icon>
   </button>
   <button mat-icon-button><mat-icon style="visibility: hidden">delete</mat-icon></button>
 </div>
+
 <div class="playlist_files">
   <ul>
     <li *ngFor="let file of obs_files; let i = index" (click)="obs_files_selected = i" [class.selected]="i === obs_files_selected">{{file}}</li>

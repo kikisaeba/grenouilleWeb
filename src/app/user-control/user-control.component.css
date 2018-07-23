@@ -1,3 +1,7 @@
+h1 {
+  text-align: center;
+}
+
 .userTable {
   width: 75%;
   margin-left: auto;
@@ -18,7 +22,7 @@ mat-header-cell {
   margin-right: auto;
 }
 
-.mat-column-user_scope, .mat-column-obs_control, .mat-column-vod_manage {
+.mat-column-user_scope, .mat-column-obs_control, .mat-column-vod_manage, .mat-column-vod_delete, .mat-column-stats_manage, .mat-column-stats_manage_scene {
   width: 70px;
   text-align: center;
 }

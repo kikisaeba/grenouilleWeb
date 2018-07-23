@@ -2,7 +2,7 @@
   color:red;
 }
 
-.refresh_button, .playlist_buttons , .playlist_files_buttons{
+.div-centered{
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -18,4 +18,8 @@
 
 .hidden {
   display: none;
+}
+
+h1 {
+  text-align:center;
 }

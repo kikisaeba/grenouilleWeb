@@ -1,3 +1,5 @@
+<h1>Droits des utilisateurs</h1>
+
 <div class="refresh_button">
   <button mat-raised-button (click)="refreshUI()">Refresh</button> &nbsp; &nbsp;
   <span *ngIf="error_text!=undefined" class="error_text">{{error_text}}</span>
@@ -13,18 +15,33 @@
     </ng-container>
 
     <ng-container matColumnDef="user_scope">
-      <th mat-header-cell *matHeaderCellDef> USERS </th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="User management from this page."> USERS </th>
       <td mat-cell *matCellDef="let element"><mat-checkbox (change)="onCheck($event, element.id, 'user_scope')" [(ngModel)]="element.user_scope"></mat-checkbox></td>
     </ng-container>
 
     <ng-container matColumnDef="obs_control">
-      <th mat-header-cell *matHeaderCellDef> OBS </th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="Control the Juno OBS."> OBS </th>
       <td mat-cell *matCellDef="let element"><mat-checkbox (change)="onCheck($event, element.id, 'obs_control')" [(ngModel)]="element.obs_control"></mat-checkbox></td>
     </ng-container>
 
     <ng-container matColumnDef="vod_manage">
-      <th mat-header-cell *matHeaderCellDef> VOD </th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="Manage VOD files (no delete)."> VOD </th>
       <td mat-cell *matCellDef="let element"><mat-checkbox (change)="onCheck($event, element.id, 'vod_manage')" [(ngModel)]="element.vod_manage"></mat-checkbox></td>
+    </ng-container>
+
+    <ng-container matColumnDef="vod_delete">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Add delete rights on VOD page."> VODd </th>
+      <td mat-cell *matCellDef="let element"><mat-checkbox (change)="onCheck($event, element.id, 'vod_delete')" [(ngModel)]="element.vod_delete"></mat-checkbox></td>
+    </ng-container>
+
+    <ng-container matColumnDef="stats_manage">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Manage stats."> STATS </th>
+      <td mat-cell *matCellDef="let element"><mat-checkbox (change)="onCheck($event, element.id, 'stats_manage')" [(ngModel)]="element.stats_manage"></mat-checkbox></td>
+    </ng-container>
+
+    <ng-container matColumnDef="stats_manage_scene">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Manipulate the STAT OBS Scene."> STATSs </th>
+      <td mat-cell *matCellDef="let element"><mat-checkbox (change)="onCheck($event, element.id, 'stats_manage_scene')" [(ngModel)]="element.stats_manage_scene"></mat-checkbox></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>

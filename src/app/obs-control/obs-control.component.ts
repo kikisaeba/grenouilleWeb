@@ -11,6 +11,7 @@ import {
 } from "../APIResults/APIResults";
 import {environment} from "../../environments/environment";
 import {Router} from "@angular/router";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-obs-control',
@@ -37,7 +38,8 @@ export class ObsControlComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private tokenService: TokensService
+    private tokenService: TokensService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -154,6 +156,9 @@ export class ObsControlComponent implements OnInit {
     });
   }
 
+  restartRTMP() {
+
+  }
 
   updateOBSPlaylist() {
     this.http.get<APIResult>(environment.baseUrl + '/api/obs/playlist/get', this.tokenService.getAuthTokenHeader()).subscribe(json => {
