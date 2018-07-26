@@ -42,3 +42,7 @@ export class APIResultVODFileList {
 export class APIResultOBSPlaylistGet {
   files: string[];
 }
+
+export class APIResultStatsCSVGet {
+  csv: string;
+}
