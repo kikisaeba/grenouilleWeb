@@ -1,11 +1,9 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs/internal/observable';
 import { EMPTY } from 'rxjs/internal/observable/empty';
 
 import { TokensService } from './tokens.service';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { switchMap, catchError } from 'rxjs/operators';
 
 @Injectable({
