@@ -83,20 +83,7 @@ export class VodManageComponent implements OnInit {
   private _getChildren = (node: FileNode) => of(node.children);
 
   ngOnInit() {
-    if (this.tokenService.refreshToken == undefined) {
-      this.router.navigate(['/index']);
-      return;
-    }
-
-    if (this.tokenService.authToken != undefined)
-      this.refreshUI();
-    this.tokenService.newAuthToken.subscribe(isValid => {
-      if (isValid) {
-        this.refreshUI();
-      } else {
-        this.resetUI();
-      }
-    });
+    this.refreshUI();
   }
 
   resetUI() {
@@ -148,7 +135,7 @@ export class VodManageComponent implements OnInit {
 
   validateDelete() {
     let payload = {'filename': this.deleteConfirmation.full_path};
-    this.http.post<APIResult>(environment.baseUrl + '/api/vod/file/delete', payload , this.tokenService.getAuthTokenHeader()).subscribe(json => {
+    this.http.post<APIResult>(environment.baseUrl + '/api/vod/file/delete', payload).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
         this.resetUI();
@@ -169,7 +156,7 @@ export class VodManageComponent implements OnInit {
 
   moveDrop() {
     let payload = {'source': this.moveSelection.full_path, 'destination': this.file_selected.full_path + '/' + this.moveSelection.filename};
-    this.http.post<APIResult>(environment.baseUrl + '/api/vod/file/move', payload , this.tokenService.getAuthTokenHeader()).subscribe(json => {
+    this.http.post<APIResult>(environment.baseUrl + '/api/vod/file/move', payload ).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
         this.resetUI();
@@ -190,7 +177,7 @@ export class VodManageComponent implements OnInit {
       return;
     let destination = this.editSelection.full_path.slice(0, this.editSelection.full_path.length - this.editSelection.filename.length) + '/' + this.editNewName;
     let payload = {'source': this.editSelection.full_path, 'destination': destination};
-    this.http.post<APIResult>(environment.baseUrl + '/api/vod/file/move', payload , this.tokenService.getAuthTokenHeader()).subscribe(json => {
+    this.http.post<APIResult>(environment.baseUrl + '/api/vod/file/move', payload ).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
         this.resetUI();
@@ -214,7 +201,7 @@ export class VodManageComponent implements OnInit {
       return;
     }
     let payload = {'dir': this.file_selected.full_path + '/' + this.newDirectoryName};
-    this.http.post<APIResult>(environment.baseUrl + '/api/vod/dir/create', payload , this.tokenService.getAuthTokenHeader()).subscribe(json => {
+    this.http.post<APIResult>(environment.baseUrl + '/api/vod/dir/create', payload ).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
         this.resetUI();
