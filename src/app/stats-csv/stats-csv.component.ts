@@ -15,9 +15,9 @@ export class StatsCsvComponent implements OnInit {
 
   selectedTabIndex: number = 0;
   csvSave: string = undefined;
-  csvContent: string[] = ['', '', '', ''];
-  csvKeys: string[] = ['preti8_teams', 'preti8_players', 'ti8_group_a', 'ti8_group_b'];
-  dataTrees: Object[][] = [[], [], [], []];
+  csvContent: string[] = ['', '', ''];
+  csvKeys: string[] = ['preti8_teams', 'preti8_players', 'ti8_groups'];
+  dataTrees: Object[][] = [[], [], []];
   error_text: string = '';
   imageCacheBusting: string = '';
   selectedTeam: string = '15';
@@ -41,8 +41,8 @@ export class StatsCsvComponent implements OnInit {
 
   resetUI() {
     this.csvSave = undefined;
-    this.csvContent = ['', '', '', '', ''];
-    this.dataTrees = [[], [], [], [], []];
+    this.csvContent = ['', '', ''];
+    this.dataTrees = [[], [], []];
     this.imageCacheBusting = Math.floor((Math.random()*1000)).toString();
   }
 

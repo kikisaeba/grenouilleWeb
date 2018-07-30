@@ -166,11 +166,11 @@
     </mat-expansion-panel>
   </mat-tab>
 
-  <mat-tab label="Groupe A">
+  <mat-tab label="Groupes">
     <mat-expansion-panel>
 
       <mat-expansion-panel-header>
-        <mat-panel-title>CSV du groupe A</mat-panel-title>
+        <mat-panel-title>CSV des groupes</mat-panel-title>
         <mat-panel-description></mat-panel-description>
       </mat-expansion-panel-header>
 
@@ -223,69 +223,7 @@
       </div> <br />
 
       <div class="div-centered">
-        <img class="img-preview" [src]="baseUrl + '/api/stats/img/ti8_group_a?m=' + imageCacheBusting">
-      </div>
-    </mat-expansion-panel>
-  </mat-tab>
-
-  <mat-tab label="Groupe B">
-    <mat-expansion-panel>
-
-      <mat-expansion-panel-header>
-        <mat-panel-title>CSV du groupe B</mat-panel-title>
-        <mat-panel-description></mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <mat-form-field class="csv_input">
-        <textarea matInput rows="30" [(ngModel)]="csvContent[3]" [disabled]="csvSave === undefined"></textarea>
-        <button mat-icon-button (click)="editCSV()" *ngIf="csvSave === undefined"
-                matTooltip="Modifier le CSV."><mat-icon>edit</mat-icon>
-        </button>
-        <span *ngIf="csvSave != undefined">
-            <button mat-icon-button (click)="validateEdit()"
-                    matTooltip="Valider le changement de CSV."><mat-icon>check</mat-icon></button>
-            <button mat-icon-button (click)="cancelEdit()"
-                    matTooltip="Annuler le changement de CSV."><mat-icon>cancel</mat-icon></button>
-          </span>
-      </mat-form-field>
-    </mat-expansion-panel>
-    <mat-expansion-panel [expanded]="true">
-
-      <mat-expansion-panel-header>
-        <mat-panel-title>Stats sous forme de tableau</mat-panel-title>
-        <mat-panel-description></mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <table *ngIf="dataTrees[3].length > 1">
-        <tr *ngFor="let row of dataTrees[3]; let i = index">
-          <ng-container *ngIf="i == 0">
-            <th *ngFor="let data of row">{{data}}</th>
-          </ng-container>
-          <ng-container *ngIf="i != 0">
-            <td *ngFor="let data of row">{{data}}</td>
-          </ng-container>
-        </tr>
-      </table>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel [expanded]="true">
-
-      <mat-expansion-panel-header>
-        <mat-panel-title>Image</mat-panel-title>
-        <mat-panel-description></mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <div class="div-centered">
-        <button mat-raised-button
-                (click)="generateImages()"
-                color="warn"
-                [disabled]="generatingImage"
-                matTooltip="Reconstruit l'image sur le serveur et l'affiche ci-dessous.">Regénérer l'image
-        </button>
-      </div> <br />
-
-      <div class="div-centered">
-        <img class="img-preview" [src]="baseUrl + '/api/stats/img/ti8_group_b?m=' + imageCacheBusting">
+        <img [src]="baseUrl + '/api/stats/img/ti8_groups?m=' + imageCacheBusting">
       </div>
     </mat-expansion-panel>
   </mat-tab>

@@ -22,6 +22,7 @@ export class IndexComponent implements OnInit {
 
   logout() {
     this.tokenService.clean_tokens();
+    location.href = environment.baseWeb;
   }
 
   login() {
