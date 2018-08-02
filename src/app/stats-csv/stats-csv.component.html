@@ -29,7 +29,7 @@
           </span>
       </mat-form-field>
     </mat-expansion-panel>
-    <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel>
 
       <mat-expansion-panel-header>
         <mat-panel-title>Stats sous forme de tableau</mat-panel-title>
@@ -56,12 +56,6 @@
       </mat-expansion-panel-header>
 
       <div class="div-centered">
-        <button mat-raised-button
-                (click)="generateImages()"
-                color="warn"
-                [disabled]="generatingImage"
-                matTooltip="Reconstruit les images sur le serveur et les affiches ci-dessous.">Regénérer les images
-        </button> &nbsp; &nbsp;
 
         <mat-form-field>
           <mat-select placeholder="Team" [(ngModel)]="selectedTeam">
@@ -69,7 +63,20 @@
               {{row[0]}}
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> &nbsp; &nbsp;
+
+        <button mat-raised-button
+                (click)="generateCurrentImage()"
+                [disabled]="generatingImage"
+                matTooltip="Reconstruit l'image en cours sur le serveur et l'affiche ci-dessous.">Regénérer cette image
+        </button> &nbsp; &nbsp;
+
+        <button mat-raised-button
+                (click)="generateImages()"
+                color="warn"
+                [disabled]="generatingImage"
+                matTooltip="Reconstruit les images sur le serveur et les affiches ci-dessous.">Regénérer toute les images
+        </button>
       </div>
 
       <div *ngIf="generatingImage">
@@ -103,7 +110,7 @@
           </span>
       </mat-form-field>
     </mat-expansion-panel>
-    <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel>
 
       <mat-expansion-panel-header>
         <mat-panel-title>Stats sous forme de tableau</mat-panel-title>
@@ -130,13 +137,6 @@
       </mat-expansion-panel-header>
 
       <div class="div-centered">
-        <button mat-raised-button
-                (click)="generateImages()"
-                color="warn"
-                [disabled]="generatingImage"
-                matTooltip="Reconstruit les images sur le serveur et les affiches ci-dessous.">Regénérer les images
-        </button> &nbsp; &nbsp;
-
         <mat-form-field>
           <mat-select placeholder="Team" [(ngModel)]="selectedTeam">
             <mat-option *ngFor="let row of dataTrees[0].slice(1, dataTrees[0].length-1)" [value]="row[1]">
@@ -153,7 +153,20 @@
               </mat-option>
             </ng-container>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> &nbsp; &nbsp;
+
+        <button mat-raised-button
+                (click)="generateCurrentImage()"
+                [disabled]="generatingImage"
+                matTooltip="Reconstruit l'image en cours sur le serveur et l'affiche ci-dessous.">Regénérer cette image
+        </button> &nbsp; &nbsp;
+
+        <button mat-raised-button
+                (click)="generateImages()"
+                color="warn"
+                [disabled]="generatingImage"
+                matTooltip="Reconstruit les images sur le serveur et les affiches ci-dessous.">Regénérer toute les images
+        </button>
       </div>
 
       <div *ngIf="generatingImage">
@@ -187,7 +200,7 @@
           </span>
       </mat-form-field>
     </mat-expansion-panel>
-    <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel>
 
       <mat-expansion-panel-header>
         <mat-panel-title>Stats sous forme de tableau</mat-panel-title>

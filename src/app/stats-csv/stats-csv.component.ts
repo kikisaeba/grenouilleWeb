@@ -143,4 +143,21 @@ export class StatsCsvComponent implements OnInit {
       }
     });
   }
+
+  generateCurrentImage() {
+    this.generatingImage = true;
+    let payload = {'key': this.csvKeys[this.selectedTabIndex]};
+    if (this.selectedTeam != undefined) payload['team_id'] = this.selectedTeam;
+    if (this.selectedPlayer != undefined && this.selectedPlayer != '') payload['player_id'] = this.selectedPlayer;
+
+    this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', payload , this.tokenService.getAuthTokenHeader()).subscribe(json => {
+      if (json.success === 'yes') {
+        this.error_text = undefined;
+        this.generatingImage = false;
+        this.refreshUI();
+      } else {
+        this.error_text = json.error;
+      }
+    });
+  }
 }
