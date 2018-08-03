@@ -48,3 +48,23 @@ export class APIResultOBSPlaylistGet {
 export class APIResultStatsCSVGet {
   csv: string;
 }
+
+export class APIResultStatsSceneStatusUpdate {
+  activated: boolean;
+}
+
+export class APIResultStatsSceneStatusGet {
+  activated: boolean;
+}
+
+
+export class APIResultStatsSceneUpdate {
+  img: string;
+  last_modified: string;
+}
+
+export class APIResultStatsSceneGet {
+  img: string;
+  last_modified: string;
+  continue: boolean;
+}

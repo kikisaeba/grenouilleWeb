@@ -18,6 +18,7 @@ import {UserControlComponent} from './user-control/user-control.component';
 import {StatsCsvComponent} from "./stats-csv/stats-csv.component";
 import {StatsGlobalComponent} from "./stats-global/stats-global.component";
 import {StatsSceneComponent} from "./stats-scene/stats-scene.component";
+import {StatsSceneControlComponent} from "./stats-scene-control/stats-scene-control.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {StatsSceneComponent} from "./stats-scene/stats-scene.component";
     UserControlComponent,
     StatsCsvComponent,
     StatsGlobalComponent,
-    StatsSceneComponent
+    StatsSceneComponent,
+    StatsSceneControlComponent
   ],
   imports: [
     BrowserModule,

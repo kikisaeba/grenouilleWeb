@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {TokensService} from "../tokens.service";
 import {UserService} from "../user.service";
 import {Router} from "@angular/router";
-import {APIResult, APIResultOBSPlaylistGet, APIResultStatsCSVGet} from "../APIResults/APIResults";
+import {APIResult, APIResultStatsCSVGet} from "../APIResults/APIResults";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
+import CsvHelper from "../shared/csv/csv_helpers";
 
 @Component({
   selector: 'app-stats-csv',
@@ -20,7 +21,7 @@ export class StatsCsvComponent implements OnInit {
   dataTrees: Object[][] = [[], [], []];
   error_text: string = '';
   imageCacheBusting: string = '';
-  selectedTeam: string = '15';
+  selectedTeam: string = '39';
   selectedPlayer: string = '86745912';
   generatingImage: boolean = false;
 
@@ -51,8 +52,7 @@ export class StatsCsvComponent implements OnInit {
 
     for (let i in this.csvKeys) {
       let options = {
-        params: {data: JSON.stringify({'key': this.csvKeys[i]})},
-        headers: this.tokenService.getAuthTokenHeader().headers
+        params: {data: JSON.stringify({'key': this.csvKeys[i]})}
       };
       this.http.get<APIResult>(environment.baseUrl + '/api/stats/csv/get', options).subscribe(json => {
         if (json.success === 'yes') {
@@ -68,36 +68,7 @@ export class StatsCsvComponent implements OnInit {
   }
 
   buildDataTree(i) {
-    this.dataTrees[i] = this.CSVtoArray(this.csvContent[i]);
-  }
-
-  CSVtoArray(csv) {
-    let objPattern = new RegExp((
-      // Delimiters.
-      "(\\" + "," + "|\\r?\\n|\\r|^)" +
-      // Quoted fields.
-      "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
-      // Standard fields.
-      "([^\"\\" + "," + "\\r\\n]*))"), "gi");
-    let arrData = [[]];
-    var arrMatches = null;
-    while (arrMatches = objPattern.exec(csv)) {
-      var strMatchedDelimiter = arrMatches[1];
-      if (strMatchedDelimiter.length && (strMatchedDelimiter != ",")) {
-        arrData.push([]);
-      }
-      if (arrMatches[2]) {
-        let strMatchedValue = arrMatches[2].replace(
-          new RegExp("\"\"", "g"), "\"");
-      } else {
-        var strMatchedValue = arrMatches[3];
-      }
-      arrData[arrData.length - 1].push(strMatchedValue);
-    }
-    if (arrData[arrData.length-1].length == 0) {
-      arrData.splice(arrData.length-1, 1);
-    }
-    return arrData;
+    this.dataTrees[i] = CsvHelper.CSVtoArray(this.csvContent[i]);
   }
 
   tabChanged(event) {
@@ -106,6 +77,15 @@ export class StatsCsvComponent implements OnInit {
       this.csvSave = undefined;
     }
     this.selectedTabIndex = event;
+  }
+
+  teamChanged(event) {
+    for (let index in this.dataTrees[1]) {
+      if (index == '0' || this.dataTrees[1][index][3] != event) continue;
+
+      this.selectedPlayer = this.dataTrees[1][index][1];
+      break;
+    }
   }
 
   editCSV() {
@@ -133,7 +113,7 @@ export class StatsCsvComponent implements OnInit {
   generateImages() {
     this.generatingImage = true;
     let payload = {'key': this.csvKeys[this.selectedTabIndex]};
-    this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', payload , this.tokenService.getAuthTokenHeader()).subscribe(json => {
+    this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', payload).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
         this.generatingImage = false;
@@ -150,7 +130,7 @@ export class StatsCsvComponent implements OnInit {
     if (this.selectedTeam != undefined) payload['team_id'] = this.selectedTeam;
     if (this.selectedPlayer != undefined && this.selectedPlayer != '') payload['player_id'] = this.selectedPlayer;
 
-    this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', payload , this.tokenService.getAuthTokenHeader()).subscribe(json => {
+    this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', payload).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
         this.generatingImage = false;

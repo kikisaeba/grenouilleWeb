@@ -7,16 +7,18 @@ import { UserControlComponent } from "./user-control/user-control.component";
 import {StatsCsvComponent} from "./stats-csv/stats-csv.component";
 import {StatsGlobalComponent} from "./stats-global/stats-global.component";
 import {StatsSceneComponent} from "./stats-scene/stats-scene.component";
+import {StatsSceneControlComponent} from "./stats-scene-control/stats-scene-control.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'index',  component: IndexComponent },
-  { path: 'user_scope',  component: UserControlComponent },
-  { path: 'obs_control',  component: ObsControlComponent },
-  { path: 'vod_manage',  component: VodManageComponent},
-  { path: 'stats_csv',  component: StatsCsvComponent},
-  { path: 'stats_global',  component: StatsGlobalComponent},
-  { path: 'stats_scene',  component: StatsSceneComponent}
+  { path: 'user/manage',  component: UserControlComponent },
+  { path: 'obs/control',  component: ObsControlComponent },
+  { path: 'vod/manage',  component: VodManageComponent},
+  { path: 'stats/csv',  component: StatsCsvComponent},
+  { path: 'stats/global',  component: StatsGlobalComponent},
+  { path: 'stats/scene',  component: StatsSceneComponent},
+  { path: 'stats/scene/control',  component: StatsSceneControlComponent}
 ];
 
 @NgModule({

@@ -1,3 +1,9 @@
-h1 {
-  text-align: center;
+.scene_container {
+  position: absolute;
+  z-index: 99999999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  height: 100%;
 }

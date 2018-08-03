@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {TokensService} from "../tokens.service";
-import {UserService} from "../user.service";
+import {environment} from "../../environments/environment";
+import {APIResult, APIResultStatsSceneGet} from "../APIResults/APIResults";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-stats-scene',
@@ -10,22 +10,35 @@ import {UserService} from "../user.service";
 })
 export class StatsSceneComponent implements OnInit {
 
+  sceneImg: string;
+  continue_scene: boolean;
+
+  refreshInterval: number;
+
   constructor(
-    private tokenService: TokensService,
-    private userService: UserService,
-    private router: Router
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
-    this.refreshUI();
+    this.continue_scene = true;
+    this.refreshInterval = setInterval(() => { this.refreshImg() }, 1000 * 5);
+    this.refreshImg();
   }
 
-  resetUI() {
+  refreshImg() {
+    if (!this.continue_scene) {
+      clearInterval(this.refreshInterval);
+      return;
+    }
 
+    this.http.get<APIResult>(environment.baseUrl + '/api/stats/scene/get').subscribe(json => {
+      if (json.success === 'yes') {
+        let payload = (<APIResultStatsSceneGet> json.payload);
+        this.sceneImg = environment.baseUrl + '/api/stats/img/' + payload.img + '?m=' + payload.last_modified;
+        this.continue_scene = payload.continue;
+      }
+    });
   }
 
-  refreshUI() {
-
-  }
 
 }

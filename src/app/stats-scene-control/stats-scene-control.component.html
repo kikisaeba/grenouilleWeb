@@ -1,0 +1,50 @@
+<h1>Gestion de la scène de stats</h1>
+<div class="div-centered">
+  <mat-slide-toggle [(ngModel)]="statSceneStatus" (change)="changeSceneStatus($event)">Status</mat-slide-toggle> &nbsp; &nbsp;
+  <button mat-raised-button
+          (click)="refreshUI()">Refresh</button> &nbsp; &nbsp;
+  <a routerLink="/stats/scene">Lien vers la scène</a> &nbsp; &nbsp;
+  <span *ngIf="error_text!=undefined" class="error_text">{{error_text}}</span>
+</div> <br />
+
+
+<div class="div-centered">
+  <mat-form-field>
+    <mat-select placeholder="Type d'image" [(ngModel)]="imageKey" (selectionChange)="keyChanged($event)">
+      <mat-option value="preti8_teams">Pré-TI8 Équipes</mat-option>
+      <mat-option value="preti8_players">Pré-TI8 Joueurs</mat-option>
+      <mat-option value="ti8_groups">GroupeStage</mat-option>
+    </mat-select>
+  </mat-form-field> &nbsp;
+
+  <mat-form-field *ngIf="imageKey == 'preti8_teams' || imageKey == 'preti8_players'">
+    <mat-select placeholder="Équipe" [(ngModel)]="selectedTeam" (selectionChange)="teamChanged($event)">
+      <mat-option *ngFor="let row of dataTeams" [value]="row[1]">
+        {{row[0]}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> &nbsp;
+
+  <mat-form-field *ngIf="imageKey == 'preti8_players'">
+    <mat-select placeholder="Joueur" [(ngModel)]="selectedPlayer" (selectionChange)="playerChanged($event)">
+      <ng-container *ngFor="let row of dataPlayers">
+        <mat-option *ngIf="row[3]===selectedTeam" [value]="row[1]">
+          {{row[0]}}
+        </mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
+
+</div>
+
+<div class="div-centered">
+  <button mat-raised-button
+          (click)="rebuildPreview()">Rebuild preview</button> &nbsp;
+  <button mat-raised-button
+          (click)="sendPreviewToScene()">Send to scene</button> &nbsp;
+</div><br />
+
+<div class="div-centered">
+  <img class="img-preview" [src]="currentPreview"> &nbsp; &nbsp;
+  <img class="img-preview" [src]="currentScene">
+</div> <br />
