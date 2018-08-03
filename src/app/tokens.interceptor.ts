@@ -36,7 +36,7 @@ export class TokensInterceptor implements HttpInterceptor {
       this.tokensService = this.injector.get(TokensService);
     }
     // Let the auth request pass through the interceptor (it's normal if this one does not have an auth token)
-    if (request.url.indexOf('api/auth/token') !== -1) {
+    if (request.url.indexOf('api/auth/token') !== -1 || request.url.indexOf('api/stats/scene/get') !== -1) {
       return next.handle(request);
     }
 

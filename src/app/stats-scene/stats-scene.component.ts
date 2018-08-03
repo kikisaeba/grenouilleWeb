@@ -21,6 +21,7 @@ export class StatsSceneComponent implements OnInit {
 
   ngOnInit() {
     this.continue_scene = true;
+    this.sceneImg = environment.baseUrl + '/api/stats/img/empty';
     this.refreshInterval = setInterval(() => { this.refreshImg() }, 1000 * 5);
     this.refreshImg();
   }
@@ -36,6 +37,7 @@ export class StatsSceneComponent implements OnInit {
         let payload = (<APIResultStatsSceneGet> json.payload);
         this.sceneImg = environment.baseUrl + '/api/stats/img/' + payload.img + '?m=' + payload.last_modified;
         this.continue_scene = payload.continue;
+      } else {
       }
     });
   }
