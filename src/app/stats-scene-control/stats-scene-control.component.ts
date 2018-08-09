@@ -70,7 +70,7 @@ export class StatsSceneControlComponent implements OnInit {
         this.error_text = undefined;
         let payload = (<APIResultStatsCSVGet> json.payload);
         this.dataTeams = CsvHelper.CSVtoArray(payload.csv);
-        this.dataTeams = this.dataTeams.slice(1, this.dataTeams.length-1);
+        this.dataTeams = this.dataTeams.slice(1, this.dataTeams.length);
       } else {
         this.error_text = json.error;
       }
@@ -81,7 +81,7 @@ export class StatsSceneControlComponent implements OnInit {
         this.error_text = undefined;
         let payload = (<APIResultStatsCSVGet> json.payload);
         this.dataPlayers = CsvHelper.CSVtoArray(payload.csv);
-        this.dataPlayers = this.dataPlayers.slice(1, this.dataPlayers.length-1);
+        this.dataPlayers = this.dataPlayers.slice(1, this.dataPlayers.length);
       } else {
         this.error_text = json.error;
       }

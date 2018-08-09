@@ -59,7 +59,7 @@
 
         <mat-form-field>
           <mat-select placeholder="Team" [(ngModel)]="selectedTeam">
-            <mat-option *ngFor="let row of dataTrees[0].slice(1, dataTrees[0].length-1)" [value]="row[1]">
+            <mat-option *ngFor="let row of dataTrees[0].slice(1, dataTrees[0].length)" [value]="row[1]">
               {{row[0]}}
             </mat-option>
           </mat-select>
@@ -139,7 +139,7 @@
       <div class="div-centered">
         <mat-form-field>
           <mat-select placeholder="Team" [(ngModel)]="selectedTeam" (valueChange)="teamChanged($event)">
-            <mat-option *ngFor="let row of dataTrees[0].slice(1, dataTrees[0].length-1)" [value]="row[1]">
+            <mat-option *ngFor="let row of dataTrees[0].slice(1, dataTrees[0].length)" [value]="row[1]">
               {{row[0]}}
             </mat-option>
           </mat-select>
@@ -147,7 +147,7 @@
 
         <mat-form-field>
           <mat-select placeholder="Joueur" [(ngModel)]="selectedPlayer">
-            <ng-container *ngFor="let row of dataTrees[1].slice(1, dataTrees[1].length-1)">
+            <ng-container *ngFor="let row of dataTrees[1].slice(1, dataTrees[1].length)">
               <mat-option *ngIf="row[3]===selectedTeam" [value]="row[1]">
                 {{row[0]}}
               </mat-option>
