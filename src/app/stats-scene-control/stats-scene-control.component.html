@@ -14,6 +14,7 @@
       <mat-option value="preti8_teams">Pré-TI8 Équipes</mat-option>
       <mat-option value="preti8_players">Pré-TI8 Joueurs</mat-option>
       <mat-option value="ti8_groups">GroupeStage</mat-option>
+      <mat-option value="post_game">Post Game</mat-option>
     </mat-select>
   </mat-form-field> &nbsp;
 
@@ -34,6 +35,16 @@
       </ng-container>
     </mat-select>
   </mat-form-field>
+
+  <mat-form-field *ngIf="imageKey == 'post_game'">
+    <input matInput placeholder="Match Id" [(ngModel)]="selectedMatchId">
+  </mat-form-field> &nbsp;
+
+  <button *ngIf="imageKey == 'post_game'" mat-icon-button (click)="imagePreviewUpdate()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+
+
 
 </div>
 

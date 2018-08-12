@@ -24,6 +24,7 @@ export class StatsSceneControlComponent implements OnInit {
   dataPlayers: string[][];
   selectedTeam: string;
   selectedPlayer: string;
+  selectedMatchId: string;
 
   error_text: string = undefined;
 
@@ -38,6 +39,7 @@ export class StatsSceneControlComponent implements OnInit {
     this.dataPlayers = [];
     this.selectedTeam = '39';
     this.selectedPlayer = '86745912';
+    this.selectedMatchId = '4031793106';
     this.currentScene = environment.baseUrl + '/api/stats/img/scene';
     this.currentPreview = environment.baseUrl + '/api/stats/img/preview';
 
@@ -119,12 +121,17 @@ export class StatsSceneControlComponent implements OnInit {
     this.imagePreviewUpdate();
   }
 
+  matchIdChanged(event) {
+    this.imagePreviewUpdate();
+  }
+
   rebuildPreview() {
-    let payload = {'key': this.imageKey, 'team_id': this.selectedTeam, 'player_id': this.selectedPlayer };
+    let payload = {'key': this.imageKey, 'team_id': this.selectedTeam, 'player_id': this.selectedPlayer, 'match_id': this.selectedMatchId};
     this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', payload).subscribe(json => {
       if (json.success === 'yes') {
         this.imagePreviewUpdate();
       }
+      console.log(json)
     });
   }
 
@@ -153,6 +160,8 @@ export class StatsSceneControlComponent implements OnInit {
       return 'preti8_teams-' + this.selectedTeam;
     } else if (this.imageKey == 'preti8_players') {
       return 'preti8_players-' + this.selectedPlayer;
+    } else if (this.imageKey == 'post_game') {
+      return 'post_game-' + this.selectedMatchId;
     }
   }
 
