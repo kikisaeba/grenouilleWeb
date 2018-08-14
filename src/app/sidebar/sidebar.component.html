@@ -8,7 +8,6 @@
   <a mat-list-item *ngIf="userService.hasScope('vod_manage')" routerLink="/vod/manage" routerLinkActive="active">VODManage</a>
   <mat-divider *ngIf="userService.hasScope('stats_manage') || userService.hasScope('stats_manage_scene')"></mat-divider>
   <a mat-list-item *ngIf="userService.hasScope('stats_manage')" routerLink="/stats/csv" routerLinkActive="active">Stats CSV</a>
-  <a mat-list-item *ngIf="userService.hasScope('stats_manage')" routerLink="/stats/global" routerLinkActive="active">Stats Global</a>
   <a mat-list-item *ngIf="userService.hasScope('stats_manage_scene')" routerLink="/stats/scene/control" routerLinkActive="active">Stats Scene</a>
   <mat-divider></mat-divider>
 </mat-nav-list>

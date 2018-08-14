@@ -22,7 +22,7 @@ export class StatsSceneComponent implements OnInit {
   ngOnInit() {
     this.continue_scene = true;
     this.sceneImg = environment.baseUrl + '/api/stats/img/empty';
-    this.refreshInterval = setInterval(() => { this.refreshImg() }, 1000 * 5);
+    this.refreshInterval = setInterval(() => { this.refreshImg() }, 1000 * 2);
     this.refreshImg();
   }
 

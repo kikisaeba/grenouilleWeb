@@ -23,8 +23,10 @@ export class StatsSceneControlComponent implements OnInit {
   dataTeams: string[][];
   dataPlayers: string[][];
   selectedTeam: string;
+  selectedTeam2: string;
   selectedPlayer: string;
   selectedMatchId: string;
+  selectedTournament: string;
 
   error_text: string = undefined;
 
@@ -38,7 +40,9 @@ export class StatsSceneControlComponent implements OnInit {
     this.dataTeams = [];
     this.dataPlayers = [];
     this.selectedTeam = '39';
+    this.selectedTeam2 = '39';
     this.selectedPlayer = '86745912';
+    this.selectedTournament = '9870';
     this.selectedMatchId = '4031793106';
     this.currentScene = environment.baseUrl + '/api/stats/img/scene';
     this.currentPreview = environment.baseUrl + '/api/stats/img/preview';
@@ -126,8 +130,8 @@ export class StatsSceneControlComponent implements OnInit {
   }
 
   rebuildPreview() {
-    let payload = {'key': this.imageKey, 'team_id': this.selectedTeam, 'player_id': this.selectedPlayer, 'match_id': this.selectedMatchId};
-    this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', payload).subscribe(json => {
+    let payload = {'team_id': this.selectedTeam, 'player_id': this.selectedPlayer, 'match_id': this.selectedMatchId, 'team_id_2': this.selectedTeam2, 'tournament_id': this.selectedTournament};
+    this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', {'key': this.imageKey, 'payload': payload}).subscribe(json => {
       if (json.success === 'yes') {
         this.imagePreviewUpdate();
       }
@@ -162,6 +166,10 @@ export class StatsSceneControlComponent implements OnInit {
       return 'preti8_players-' + this.selectedPlayer;
     } else if (this.imageKey == 'post_game') {
       return 'post_game-' + this.selectedMatchId;
+    } else if (this.imageKey == 'tournament_global') {
+      return 'tournament_global-' + this.selectedTournament
+    } else if (this.imageKey == 'team_faceoff') {
+      return 'team_faceoff-' + this.selectedTeam + '-' + this.selectedTeam2
     }
   }
 

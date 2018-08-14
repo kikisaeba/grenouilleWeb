@@ -5,7 +5,6 @@ import { ObsControlComponent } from "./obs-control/obs-control.component"
 import { VodManageComponent } from "./vod-manage/vod-manage.component";
 import { UserControlComponent } from "./user-control/user-control.component";
 import {StatsCsvComponent} from "./stats-csv/stats-csv.component";
-import {StatsGlobalComponent} from "./stats-global/stats-global.component";
 import {StatsSceneComponent} from "./stats-scene/stats-scene.component";
 import {StatsSceneControlComponent} from "./stats-scene-control/stats-scene-control.component";
 
@@ -16,7 +15,6 @@ const routes: Routes = [
   { path: 'obs/control',  component: ObsControlComponent },
   { path: 'vod/manage',  component: VodManageComponent},
   { path: 'stats/csv',  component: StatsCsvComponent},
-  { path: 'stats/global',  component: StatsGlobalComponent},
   { path: 'stats/scene',  component: StatsSceneComponent},
   { path: 'stats/scene/control',  component: StatsSceneControlComponent}
 ];

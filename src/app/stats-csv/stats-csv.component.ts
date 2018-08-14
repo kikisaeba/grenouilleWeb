@@ -112,7 +112,7 @@ export class StatsCsvComponent implements OnInit {
 
   generateImages() {
     this.generatingImage = true;
-    let payload = {'key': this.csvKeys[this.selectedTabIndex]};
+    let payload = {'key': this.csvKeys[this.selectedTabIndex], 'payload': {'team_id': null, 'player_id': null}};
     this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', payload).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
@@ -126,9 +126,9 @@ export class StatsCsvComponent implements OnInit {
 
   generateCurrentImage() {
     this.generatingImage = true;
-    let payload = {'key': this.csvKeys[this.selectedTabIndex]};
-    if (this.selectedTeam != undefined) payload['team_id'] = this.selectedTeam;
-    if (this.selectedPlayer != undefined && this.selectedPlayer != '') payload['player_id'] = this.selectedPlayer;
+    let payload = {'key': this.csvKeys[this.selectedTabIndex], 'payload': {}};
+    if (this.selectedTeam != undefined) payload['payload']['team_id'] = this.selectedTeam;
+    if (this.selectedPlayer != undefined && this.selectedPlayer != '') payload['payload']['player_id'] = this.selectedPlayer;
 
     this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', payload).subscribe(json => {
       if (json.success === 'yes') {
