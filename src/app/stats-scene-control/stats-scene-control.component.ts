@@ -46,6 +46,7 @@ export class StatsSceneControlComponent implements OnInit {
     this.selectedMatchId = '4061671194';
     this.currentScene = environment.baseUrl + '/api/stats/img/scene';
     this.currentPreview = environment.baseUrl + '/api/stats/img/preview';
+    this.error_text = undefined;
 
     this.refreshUI();
     this.imagePreviewUpdate();
@@ -130,10 +131,13 @@ export class StatsSceneControlComponent implements OnInit {
   }
 
   rebuildPreview() {
+    this.error_text = undefined;
     let payload = {'team_id': this.selectedTeam, 'player_id': this.selectedPlayer, 'match_id': this.selectedMatchId, 'team_id_2': this.selectedTeam2, 'tournament_id': this.selectedTournament};
     this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', {'key': this.imageKey, 'payload': payload}).subscribe(json => {
       if (json.success === 'yes') {
         this.imagePreviewUpdate();
+      } else {
+        this.error_text = json['error']
       }
       console.log(json)
     });
