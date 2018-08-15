@@ -42,8 +42,8 @@ export class StatsSceneControlComponent implements OnInit {
     this.selectedTeam = '39';
     this.selectedTeam2 = '39';
     this.selectedPlayer = '86745912';
-    this.selectedTournament = '9870';
-    this.selectedMatchId = '4031793106';
+    this.selectedTournament = '8';
+    this.selectedMatchId = '4061671194';
     this.currentScene = environment.baseUrl + '/api/stats/img/scene';
     this.currentPreview = environment.baseUrl + '/api/stats/img/preview';
 
@@ -153,7 +153,7 @@ export class StatsSceneControlComponent implements OnInit {
   }
 
   imagePreviewUpdate() {
-    let cache_busting = '?m=' + Math.floor((Math.random()*1000)).toString();
+    let cache_busting = '?m=' + Math.floor((Math.random()*100000)).toString();
     this.currentPreview = environment.baseUrl + '/api/stats/img/' + this.previewImageMaker() + cache_busting;
   }
 
