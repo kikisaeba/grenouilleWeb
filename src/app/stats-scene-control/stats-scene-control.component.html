@@ -49,7 +49,7 @@
     <input matInput placeholder="Match Id" [(ngModel)]="selectedMatchId">
   </mat-form-field> &nbsp;
 
-  <mat-form-field *ngIf="imageKey == 'tournament_global'">
+  <mat-form-field *ngIf="imageKey == 'tournament_global' || imageKey == 'team_faceoff'">
     <input matInput placeholder="Tournament ID" [(ngModel)]="selectedTournament">
   </mat-form-field> &nbsp;
 
