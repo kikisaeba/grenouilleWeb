@@ -13,7 +13,7 @@ import {UserService} from "../user.service";
 })
 export class UserControlComponent implements OnInit {
 
-  displayColumn = ['id', 'user_scope', 'obs_control', 'vod_manage', 'vod_delete', 'stats_manage', 'stats_manage_scene'];
+  displayColumn = ['id', 'user_scope', 'calendar', 'obs_control', 'vod_manage', 'vod_delete', 'stats_manage', 'stats_manage_scene'];
   usersData = [];
   totalDisplay: number = 0;
   pageSize: number = 10;
@@ -53,6 +53,7 @@ export class UserControlComponent implements OnInit {
           let user_data = {
             id: user.id,
             user_scope: user.scopes.indexOf('user_scope') >= 0,
+            calendar: user.scopes.indexOf('calendar') >= 0,
             obs_control: user.scopes.indexOf('obs_control') >= 0,
             vod_manage: user.scopes.indexOf('vod_manage') >= 0,
             vod_delete: user.scopes.indexOf('vod_delete') >= 0,

@@ -1,0 +1,11 @@
+<h1>Gestion de la scène de stats</h1>
+<div class="div-centered">
+  <button mat-raised-button
+          (click)="rebuildCalendar()">Reconstruire les calendriers</button> &nbsp; &nbsp;
+  <span *ngIf="error_text!=undefined" class="error_text">{{error_text}}</span>
+</div> <br />
+
+<div class="div-centered">
+  <img class="img-preview" [src]="currentWeek"> &nbsp; &nbsp;
+  <img class="img-preview" [src]="nextWeek">
+</div> <br />

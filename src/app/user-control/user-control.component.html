@@ -19,6 +19,11 @@
       <td mat-cell *matCellDef="let element"><mat-checkbox (change)="onCheck($event, element.id, 'user_scope')" [(ngModel)]="element.user_scope"></mat-checkbox></td>
     </ng-container>
 
+    <ng-container matColumnDef="calendar">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Calendrier."> CALENDAR </th>
+      <td mat-cell *matCellDef="let element"><mat-checkbox (change)="onCheck($event, element.id, 'calendar')" [(ngModel)]="element.calendar"></mat-checkbox></td>
+    </ng-container>
+
     <ng-container matColumnDef="obs_control">
       <th mat-header-cell *matHeaderCellDef matTooltip="Control the Juno OBS."> OBS </th>
       <td mat-cell *matCellDef="let element"><mat-checkbox (change)="onCheck($event, element.id, 'obs_control')" [(ngModel)]="element.obs_control"></mat-checkbox></td>

@@ -139,7 +139,6 @@ export class StatsSceneControlComponent implements OnInit {
       } else {
         this.error_text = json['error']
       }
-      console.log(json)
     });
   }
 
