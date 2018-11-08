@@ -70,5 +70,8 @@ export class APIResultStatsSceneGet {
 }
 
 export class APIResultVODDiskUsage {
-  size: number;
+  vod_size: number;
+  disk_total: number;
+  disk_used: number;
+  disk_free: number;
 }

@@ -53,8 +53,8 @@
 
 <h5>Fichiers disponibles</h5>
 
-Taille de tous les fichiers: {{disk_usage / 1048576 / 1024 | number:'1.1-2'}} Go.<br />
-Espace restant: {{free_space / 1048576 / 1024 | number:'1.1-2'}} Go. <br /><br />
+Taille de tous les fichiers de VOD: {{disk_info.vod_size / 1048576 / 1024 | number:'1.1-2'}} Go.<br />
+Espace restant: {{disk_info.disk_free / 1048576 / 1024 | number:'1.1-2'}} Go ({{disk_info.disk_used / 1048576 / 1024 | number:'1.1-2'}} Go utilisés au total sur {{disk_info.disk_total / 1048576 / 1024 | number:'1.1-2'}} Go). <br /><br />
 
 <div class="directoryTree subsection" >
   <button class="tree-action-button" mat-raised-button color="primary" (click)="treeControl.collapseAll()">Collapse all folders</button>

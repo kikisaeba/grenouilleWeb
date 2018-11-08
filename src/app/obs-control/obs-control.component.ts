@@ -32,8 +32,7 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
   obs_playlist: string[] = [];
   removedFromPlaylist: string[] = [];
 
-  free_space: number = undefined;
-  disk_usage: number = undefined;
+  disk_info: APIResultVODDiskUsage = undefined;
 
   constructor(
     private router: Router,
@@ -59,8 +58,7 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
     this.activeSceneUI = '';
     this.obs_playlist = [];
     this.error_text = undefined;
-    this.free_space = undefined;
-    this.disk_usage = undefined;
+    this.disk_info = undefined
   }
 
   refreshUI() {
@@ -187,13 +185,11 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
   }
 
   updateDiskUsage() {
-    this.free_space = 50;
-
     this.http.get<APIResult>(environment.baseUrl + '/api/vod/disk_usage').subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
         let payload = (<APIResultVODDiskUsage> json.payload);
-        this.disk_usage = payload.size;
+        this.disk_info = payload;
       } else {
         this.error_text = json.error;
       }
