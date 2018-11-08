@@ -68,3 +68,7 @@ export class APIResultStatsSceneGet {
   last_modified: string;
   continue: boolean;
 }
+
+export class APIResultVODDiskUsage {
+  size: number;
+}

@@ -6,7 +6,7 @@ import {
   APIResult,
   APIResultOBSPlaylistGet,
   APIResultOBSSceneList,
-  APIResultOBSStatus,
+  APIResultOBSStatus, APIResultVODDiskUsage,
   APIResultVODFileList
 } from "../APIResults/APIResults";
 import {environment} from "../../environments/environment";
@@ -32,6 +32,9 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
   obs_playlist: string[] = [];
   removedFromPlaylist: string[] = [];
 
+  free_space: number = undefined;
+  disk_usage: number = undefined;
+
   constructor(
     private router: Router,
     http: HttpClient,
@@ -40,7 +43,7 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
   ) {
     super(http);
   }
-  
+
   ngOnInit() {
     this.refreshUI();
   }
@@ -56,6 +59,8 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
     this.activeSceneUI = '';
     this.obs_playlist = [];
     this.error_text = undefined;
+    this.free_space = undefined;
+    this.disk_usage = undefined;
   }
 
   refreshUI() {
@@ -63,6 +68,7 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
     this.updateSceneList();
     this.updateOBSStatus();
     this.updateOBSPlaylist();
+    this.updateDiskUsage();
   }
 
   updateSceneList() {
@@ -178,6 +184,20 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
 
   addToPlaylist(node) {
     this.obs_playlist.push(node.full_path);
+  }
+
+  updateDiskUsage() {
+    this.free_space = 50;
+
+    this.http.get<APIResult>(environment.baseUrl + '/api/vod/disk_usage').subscribe(json => {
+      if (json.success === 'yes') {
+        this.error_text = undefined;
+        let payload = (<APIResultVODDiskUsage> json.payload);
+        this.disk_usage = payload.size;
+      } else {
+        this.error_text = json.error;
+      }
+    });
   }
 
 }
