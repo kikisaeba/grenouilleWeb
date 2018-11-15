@@ -10,8 +10,10 @@ import { HttpClient } from "@angular/common/http";
 })
 export class CalendarComponent implements OnInit {
 
-  currentWeek: string;
-  nextWeek: string;
+  froggedCurrentWeek: string;
+  froggedNextWeek: string;
+  artifactCurrentWeek: string;
+  artifactNextWeek: string;
   error_text: string = undefined;
 
   constructor(
@@ -19,8 +21,10 @@ export class CalendarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.currentWeek = environment.baseUrl + '/api/stats/img/calendar_now';
-    this.nextWeek = environment.baseUrl + '/api/stats/img/calendar_next';
+    this.froggedCurrentWeek = environment.baseUrl + '/api/stats/img/calendar_frogged_now';
+    this.froggedNextWeek = environment.baseUrl + '/api/stats/img/calendar_frogged_next';
+    this.artifactCurrentWeek = environment.baseUrl + '/api/stats/img/calendar_artifact_now';
+    this.artifactNextWeek = environment.baseUrl + '/api/stats/img/calendar_artifact_next';
     this.error_text = undefined;
 
     this.imageGenerationUpdate();
@@ -34,14 +38,15 @@ export class CalendarComponent implements OnInit {
       } else {
         this.error_text = json['error']
       }
-      console.log(json)
     });
   }
 
   imageGenerationUpdate() {
     let cache_busting = '?m=' + Math.floor((Math.random()*100000)).toString();
-    this.currentWeek = environment.baseUrl + '/api/stats/img/calendar_now' + cache_busting;
-    this.nextWeek = environment.baseUrl + '/api/stats/img/calendar_next' + cache_busting;
+    this.froggedCurrentWeek = environment.baseUrl + '/api/stats/img/calendar_frogged_now' + cache_busting;
+    this.froggedNextWeek = environment.baseUrl + '/api/stats/img/calendar_frogged_next' + cache_busting;
+    this.artifactCurrentWeek = environment.baseUrl + '/api/stats/img/calendar_artifact_now' + cache_busting;
+    this.artifactNextWeek = environment.baseUrl + '/api/stats/img/calendar_artifact_next' + cache_busting;
   }
 
 }

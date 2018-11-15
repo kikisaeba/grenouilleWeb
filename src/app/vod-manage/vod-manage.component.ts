@@ -60,6 +60,19 @@ export class VodManageComponent extends AbstractFileTreeComponent implements OnI
     this.deleteConfirmation = this.file_selected;
   }
 
+  uploadSelection() {
+    /**
+    let payload = {'filename': this.file_selected.full_path};
+    this.http.post<APIResult>(environment.baseUrl + '/api/vod/file/youtube/upload', payload).subscribe(json => {
+      if (json.success === 'yes') {
+        this.error_text = undefined;
+        this.file_selected = undefined;
+      } else {
+        this.error_text = json.error;
+      }
+    });**/
+  }
+
   validateDelete() {
     let payload = {'filename': this.deleteConfirmation.full_path};
     this.http.post<APIResult>(environment.baseUrl + '/api/vod/file/delete', payload).subscribe(json => {

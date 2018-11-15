@@ -8,7 +8,7 @@
 <div class="directoryTree" >
   <button class="tree-action-button" mat-raised-button color="primary" (click)="treeControl.collapseAll()">Collapse all folders</button>
   <button class="tree-action-button" mat-raised-button color="primary" (click)="treeControl.expandAll()">Expand all folders</button>
-  
+
   <mat-tree [dataSource]="treeData" [treeControl]="treeControl">
 
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
@@ -37,6 +37,9 @@
           <button mat-icon-button (click)="deleteSelection()"
                   *ngIf="editSelection === undefined && userService.hasScope('vod_delete')"
                   matTooltip="Supprimer ce fichier."><mat-icon>delete</mat-icon></button>
+          <!--button mat-icon-button (click)="uploadSelection()"
+                  *ngIf="editSelection === undefined && userService.hasScope('vod_manage')"
+                  matTooltip="Upload ce fichier vers Youtube."><mat-icon>cloud_upload</mat-icon></button-->
           <span *ngIf="deleteConfirmation != undefined">Confirmer suppression
             <button mat-icon-button (click)="validateDelete()"
                     matTooltip="Valider la suppression."><mat-icon>check</mat-icon></button>
