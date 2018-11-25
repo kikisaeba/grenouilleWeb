@@ -50,21 +50,25 @@ export class StatsCsvComponent implements OnInit {
   refreshUI() {
     this.resetUI();
 
-    for (let i in this.csvKeys) {
-      let options = {
-        params: {data: JSON.stringify({'key': this.csvKeys[i]})}
+    this.csvKeys.forEach((element, i) => {
+      const options = {
+        params: {
+          data: JSON.stringify({'key': element})
+        }
       };
+
       this.http.get<APIResult>(environment.baseUrl + '/api/stats/csv/get', options).subscribe(json => {
         if (json.success === 'yes') {
           this.error_text = undefined;
-          let payload = (<APIResultStatsCSVGet> json.payload);
+          const payload = (<APIResultStatsCSVGet> json.payload);
           this.csvContent[i] = payload.csv;
           this.buildDataTree(i);
         } else {
           this.error_text = json.error;
         }
       });
-    }
+    });
+
   }
 
   buildDataTree(i) {
