@@ -44,7 +44,7 @@ export class StatsCsvComponent implements OnInit {
     this.csvSave = undefined;
     this.csvContent = ['', '', ''];
     this.dataTrees = [[], [], []];
-    this.imageCacheBusting = Math.floor((Math.random()*1000)).toString();
+    this.imageCacheBusting = Math.floor((Math.random() * 1000)).toString();
   }
 
   refreshUI() {
@@ -72,7 +72,7 @@ export class StatsCsvComponent implements OnInit {
   }
 
   tabChanged(event) {
-    if (this.csvSave != undefined) {
+    if (this.csvSave !== undefined) {
       this.csvContent[this.selectedTabIndex] = this.csvSave;
       this.csvSave = undefined;
     }
@@ -80,8 +80,10 @@ export class StatsCsvComponent implements OnInit {
   }
 
   teamChanged(event) {
-    for (let index in this.dataTrees[1]) {
-      if (index == '0' || this.dataTrees[1][index][3] != event) continue;
+    for (const index in this.dataTrees[1]) {
+      if (index === '0' || this.dataTrees[1][index][3] !== event) {
+        continue;
+      }
 
       this.selectedPlayer = this.dataTrees[1][index][1];
       break;
@@ -93,16 +95,17 @@ export class StatsCsvComponent implements OnInit {
   }
 
   validateEdit() {
-    let payload = {'key': this.csvKeys[this.selectedTabIndex], 'value': this.csvContent[this.selectedTabIndex]};
-    this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/update', payload , this.tokenService.getAuthTokenHeader()).subscribe(json => {
-      if (json.success === 'yes') {
-        this.error_text = undefined;
-        this.csvSave = undefined;
-        this.buildDataTree(this.selectedTabIndex);
-      } else {
-        this.error_text = json.error;
-      }
-    });
+    const payload = {'key': this.csvKeys[this.selectedTabIndex], 'value': this.csvContent[this.selectedTabIndex]};
+    this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/update', payload , this.tokenService.getAuthTokenHeader())
+      .subscribe(json => {
+        if (json.success === 'yes') {
+          this.error_text = undefined;
+          this.csvSave = undefined;
+          this.buildDataTree(this.selectedTabIndex);
+        } else {
+          this.error_text = json.error;
+        }
+      });
   }
 
   cancelEdit() {
@@ -112,7 +115,7 @@ export class StatsCsvComponent implements OnInit {
 
   generateImages() {
     this.generatingImage = true;
-    let payload = {'key': this.csvKeys[this.selectedTabIndex], 'payload': {'team_id': null, 'player_id': null}};
+    const payload = {'key': this.csvKeys[this.selectedTabIndex], 'payload': {'team_id': null, 'player_id': null}};
     this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', payload).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
@@ -126,9 +129,14 @@ export class StatsCsvComponent implements OnInit {
 
   generateCurrentImage() {
     this.generatingImage = true;
-    let payload = {'key': this.csvKeys[this.selectedTabIndex], 'payload': {}};
-    if (this.selectedTeam != undefined) payload['payload']['team_id'] = this.selectedTeam;
-    if (this.selectedPlayer != undefined && this.selectedPlayer != '') payload['payload']['player_id'] = this.selectedPlayer;
+    const payload = {'key': this.csvKeys[this.selectedTabIndex], 'payload': {}};
+    if (this.selectedTeam !== undefined) {
+      payload['payload']['team_id'] = this.selectedTeam;
+    }
+
+    if (this.selectedPlayer !== undefined && this.selectedPlayer !== '') {
+      payload['payload']['player_id'] = this.selectedPlayer;
+    }
 
     this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', payload).subscribe(json => {
       if (json.success === 'yes') {

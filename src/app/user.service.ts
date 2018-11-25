@@ -18,13 +18,13 @@ export class UserService {
   ) { }
 
   isLogged() {
-    return (this.steam_id != undefined);
+    return (this.steam_id !== undefined);
   }
 
   updateUserMeGet() {
     this.http.get<APIResult>(environment.baseUrl + '/api/user/me/details').subscribe(json => {
       if (json.success === 'yes') {
-        let result = <APIResultUserMeDetails> json.payload;
+        const result = <APIResultUserMeDetails> json.payload;
         this.steam_id = result.steam_id;
         this.scopes = result.scopes;
       } else {
@@ -34,7 +34,7 @@ export class UserService {
   }
 
   hasScope(scope: string) {
-    return (this.scopes != undefined && this.scopes.includes(scope))
+    return (this.scopes !== undefined && this.scopes.includes(scope));
   }
 
 }

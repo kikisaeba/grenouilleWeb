@@ -58,7 +58,7 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
     this.activeSceneUI = '';
     this.obs_playlist = [];
     this.error_text = undefined;
-    this.disk_info = undefined
+    this.disk_info = undefined;
   }
 
   refreshUI() {
@@ -73,7 +73,7 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
     this.http.get<APIResult>(environment.baseUrl + '/api/obs/scene/list').subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
-        let payload = (<APIResultOBSSceneList> json.payload);
+        const payload = (<APIResultOBSSceneList> json.payload);
         this.activeScene = payload.active_scene;
         this.activeSceneUI = payload.active_scene;
         this.scenes = payload.scenes;
@@ -84,7 +84,7 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
   }
 
   changeScene() {
-    let payload = { 'scene': this.activeSceneUI };
+    const payload = { 'scene': this.activeSceneUI };
     this.http.post<APIResult>(environment.baseUrl + '/api/obs/scene/update', payload).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
@@ -100,7 +100,7 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
     this.http.get<APIResult>(environment.baseUrl + '/api/obs/status').subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
-        let payload = (<APIResultOBSStatus> json.payload);
+        const payload = (<APIResultOBSStatus> json.payload);
         this.statusRecordingUI = payload.recording;
         this.statusRecording = payload.recording;
         this.statusStreamingUI = payload.streaming;
@@ -113,10 +113,11 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
 
   changeStreaming() {
     let url = 'stop';
-    if (this.statusStreamingUI)
+    if (this.statusStreamingUI) {
       url = 'start';
+    }
 
-    let payload = {};
+    const payload = {};
     this.http.post<APIResult>(environment.baseUrl + '/api/obs/stream/' + url, payload).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
@@ -130,10 +131,11 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
 
   changeRecording() {
     let url = 'stop';
-    if (this.statusRecordingUI)
+    if (this.statusRecordingUI) {
       url = 'start';
+    }
 
-    let payload = {};
+    const payload = {};
     this.http.post<APIResult>(environment.baseUrl + '/api/obs/record/' + url, payload).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
@@ -146,7 +148,7 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
   }
 
   restartRTMP() {
-    let payload = {};
+    const payload = {};
     this.http.post<APIResult>(environment.baseUrl + '/api/obs/rtmp/restart', payload).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
@@ -160,7 +162,7 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
     this.http.get<APIResult>(environment.baseUrl + '/api/obs/playlist/get').subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
-        let payload = (<APIResultOBSPlaylistGet> json.payload);
+        const payload = (<APIResultOBSPlaylistGet> json.payload);
         this.obs_playlist = payload.files;
       } else {
         this.error_text = json.error;
@@ -170,7 +172,7 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
   }
 
   pushNewOBSPlaylist() {
-    let payload = {'files': this.obs_playlist};
+    const payload = {'files': this.obs_playlist};
     this.http.post<APIResult>(environment.baseUrl + '/api/obs/playlist/update', payload).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
@@ -188,7 +190,7 @@ export class ObsControlComponent extends AbstractFileTreeComponent implements On
     this.http.get<APIResult>(environment.baseUrl + '/api/vod/disk_usage').subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
-        let payload = (<APIResultVODDiskUsage> json.payload);
+        const payload = (<APIResultVODDiskUsage> json.payload);
         this.disk_info = payload;
       } else {
         this.error_text = json.error;

@@ -74,12 +74,12 @@ export class VodManageComponent extends AbstractFileTreeComponent implements OnI
   }
 
   validateDelete() {
-    let payload = {'filename': this.deleteConfirmation.full_path};
+    const payload = {'filename': this.deleteConfirmation.full_path};
     this.http.post<APIResult>(environment.baseUrl + '/api/vod/file/delete', payload).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
         this.resetUI();
-        this.refreshUI()
+        this.refreshUI();
       } else {
         this.error_text = json.error;
       }
@@ -95,12 +95,15 @@ export class VodManageComponent extends AbstractFileTreeComponent implements OnI
   }
 
   moveDrop() {
-    let payload = {'source': this.moveSelection.full_path, 'destination': this.file_selected.full_path + '/' + this.moveSelection.filename};
+    const payload = {
+      'source': this.moveSelection.full_path,
+      'destination': this.file_selected.full_path + '/' + this.moveSelection.filename
+    };
     this.http.post<APIResult>(environment.baseUrl + '/api/vod/file/move', payload ).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
         this.resetUI();
-        this.refreshUI()
+        this.refreshUI();
       } else {
         this.error_text = json.error;
       }
@@ -113,15 +116,18 @@ export class VodManageComponent extends AbstractFileTreeComponent implements OnI
   }
 
   validateEdit() {
-    if (this.editNewName.length === 0)
+    if (this.editNewName.length === 0) {
       return;
-    let destination = this.editSelection.full_path.slice(0, this.editSelection.full_path.length - this.editSelection.filename.length) + '/' + this.editNewName;
-    let payload = {'source': this.editSelection.full_path, 'destination': destination};
+    }
+
+    const destination = this.editSelection.full_path
+      .slice(0, this.editSelection.full_path.length - this.editSelection.filename.length) + '/' + this.editNewName;
+    const payload = {'source': this.editSelection.full_path, 'destination': destination};
     this.http.post<APIResult>(environment.baseUrl + '/api/vod/file/move', payload ).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
         this.resetUI();
-        this.refreshUI()
+        this.refreshUI();
       } else {
         this.error_text = json.error;
       }
@@ -133,19 +139,19 @@ export class VodManageComponent extends AbstractFileTreeComponent implements OnI
   }
 
   createNewDirectory() {
-    this.newDirectoryName = ''
+    this.newDirectoryName = '';
   }
 
   validateNewDirectory() {
     if (this.newDirectoryName.length === 0) {
       return;
     }
-    let payload = {'dir': this.file_selected.full_path + '/' + this.newDirectoryName};
+    const payload = {'dir': this.file_selected.full_path + '/' + this.newDirectoryName};
     this.http.post<APIResult>(environment.baseUrl + '/api/vod/dir/create', payload ).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
         this.resetUI();
-        this.refreshUI()
+        this.refreshUI();
       } else {
         this.error_text = json.error;
       }

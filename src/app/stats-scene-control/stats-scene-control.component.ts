@@ -56,7 +56,7 @@ export class StatsSceneControlComponent implements OnInit {
     this.http.get<APIResult>(environment.baseUrl + '/api/stats/scene/status/get').subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
-        let payload = (<APIResultStatsSceneStatusGet> json.payload);
+        const payload = (<APIResultStatsSceneStatusGet> json.payload);
         this.statSceneStatus = payload.activated;
       } else {
         this.error_text = json.error;
@@ -65,7 +65,7 @@ export class StatsSceneControlComponent implements OnInit {
     this.http.get<APIResult>(environment.baseUrl + '/api/stats/scene/get').subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
-        let payload = (<APIResultStatsSceneGet> json.payload);
+        const payload = (<APIResultStatsSceneGet> json.payload);
         this.currentScene = environment.baseUrl + '/api/stats/img/' + payload.img + '?m=' + payload.last_modified;
       } else {
         this.error_text = json.error;
@@ -75,7 +75,7 @@ export class StatsSceneControlComponent implements OnInit {
       { params: {data: JSON.stringify({'key': 'preti8_teams'})} }).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
-        let payload = (<APIResultStatsCSVGet> json.payload);
+        const payload = (<APIResultStatsCSVGet> json.payload);
         this.dataTeams = CsvHelper.CSVtoArray(payload.csv);
         this.dataTeams = this.dataTeams.slice(1, this.dataTeams.length);
       } else {
@@ -86,7 +86,7 @@ export class StatsSceneControlComponent implements OnInit {
       { params: {data: JSON.stringify({'key': 'preti8_players'})} }).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
-        let payload = (<APIResultStatsCSVGet> json.payload);
+        const payload = (<APIResultStatsCSVGet> json.payload);
         this.dataPlayers = CsvHelper.CSVtoArray(payload.csv);
         this.dataPlayers = this.dataPlayers.slice(1, this.dataPlayers.length);
       } else {
@@ -113,8 +113,10 @@ export class StatsSceneControlComponent implements OnInit {
   }
 
   teamChanged(event) {
-    for (let index in this.dataPlayers) {
-      if (this.dataPlayers[index][3] != event.value) continue;
+    for (const index in this.dataPlayers) {
+      if (this.dataPlayers[index][3] !== event.value) {
+        continue;
+      }
 
       this.selectedPlayer = this.dataPlayers[index][1];
       break;
@@ -132,22 +134,29 @@ export class StatsSceneControlComponent implements OnInit {
 
   rebuildPreview() {
     this.error_text = undefined;
-    let payload = {'team_id': this.selectedTeam, 'player_id': this.selectedPlayer, 'match_id': this.selectedMatchId, 'team_id_2': this.selectedTeam2, 'tournament_id': this.selectedTournament};
-    this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', {'key': this.imageKey, 'payload': payload}).subscribe(json => {
-      if (json.success === 'yes') {
-        this.imagePreviewUpdate();
-      } else {
-        this.error_text = json['error']
-      }
-    });
+    const payload = {
+      'team_id': this.selectedTeam,
+      'player_id': this.selectedPlayer,
+      'match_id': this.selectedMatchId,
+      'team_id_2': this.selectedTeam2,
+      'tournament_id': this.selectedTournament
+    };
+    this.http.post<APIResult>(environment.baseUrl + '/api/stats/csv/img/generate', {'key': this.imageKey, 'payload': payload})
+      .subscribe(json => {
+        if (json.success === 'yes') {
+          this.imagePreviewUpdate();
+        } else {
+          this.error_text = json['error'];
+        }
+      });
   }
 
   sendPreviewToScene() {
-    let payload = {'img': this.previewImageMaker()};
-    this.http.post<APIResult>(environment.baseUrl + '/api/stats/scene/update', payload).subscribe(json => {
+    const post_payload = {'img': this.previewImageMaker()};
+    this.http.post<APIResult>(environment.baseUrl + '/api/stats/scene/update', post_payload).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
-        let payload = (<APIResultStatsSceneUpdate> json.payload);
+        const payload = (<APIResultStatsSceneUpdate> json.payload);
         this.currentScene = environment.baseUrl + '/api/stats/img/' + payload.img + '?m=' + payload.last_modified;
       } else {
         this.error_text = json.error;
@@ -156,23 +165,23 @@ export class StatsSceneControlComponent implements OnInit {
   }
 
   imagePreviewUpdate() {
-    let cache_busting = '?m=' + Math.floor((Math.random()*100000)).toString();
+    const cache_busting = '?m=' + Math.floor((Math.random() * 100000)).toString();
     this.currentPreview = environment.baseUrl + '/api/stats/img/' + this.previewImageMaker() + cache_busting;
   }
 
   previewImageMaker() {
-    if (this.imageKey == 'ti8_groups') {
+    if (this.imageKey === 'ti8_groups') {
       return 'ti8_groups';
-    } else if (this.imageKey == 'preti8_teams') {
+    } else if (this.imageKey === 'preti8_teams') {
       return 'preti8_teams-' + this.selectedTeam;
-    } else if (this.imageKey == 'preti8_players') {
+    } else if (this.imageKey === 'preti8_players') {
       return 'preti8_players-' + this.selectedPlayer;
-    } else if (this.imageKey == 'post_game') {
+    } else if (this.imageKey === 'post_game') {
       return 'post_game-' + this.selectedMatchId;
-    } else if (this.imageKey == 'tournament_global') {
-      return 'tournament_global-' + this.selectedTournament
-    } else if (this.imageKey == 'team_faceoff') {
-      return 'team_faceoff-' + this.selectedTeam + '-' + this.selectedTeam2
+    } else if (this.imageKey === 'tournament_global') {
+      return 'tournament_global-' + this.selectedTournament;
+    } else if (this.imageKey === 'team_faceoff') {
+      return 'team_faceoff-' + this.selectedTeam + '-' + this.selectedTeam2;
     }
   }
 

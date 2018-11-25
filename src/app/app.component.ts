@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-      if (params['token'] != undefined) {
+      if (params['token'] !== undefined) {
         localStorage.setItem('refreshToken', params['token']);
         this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams: { }, queryParamsHandling: 'merge', replaceUrl: true });
         this.userService.updateUserMeGet();

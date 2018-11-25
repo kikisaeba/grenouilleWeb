@@ -22,7 +22,7 @@ export class StatsSceneComponent implements OnInit {
   ngOnInit() {
     this.continue_scene = true;
     this.sceneImg = environment.baseUrl + '/api/stats/img/empty';
-    this.refreshInterval = setInterval(() => { this.refreshImg() }, 1000 * 2);
+    this.refreshInterval = setInterval(() => { this.refreshImg(); }, 1000 * 2);
     this.refreshImg();
   }
 
@@ -34,7 +34,7 @@ export class StatsSceneComponent implements OnInit {
 
     this.http.get<APIResult>(environment.baseUrl + '/api/stats/scene/get').subscribe(json => {
       if (json.success === 'yes') {
-        let payload = (<APIResultStatsSceneGet> json.payload);
+        const payload = (<APIResultStatsSceneGet> json.payload);
         this.sceneImg = environment.baseUrl + '/api/stats/img/' + payload.img + '?m=' + payload.last_modified;
         this.continue_scene = payload.continue;
       } else {

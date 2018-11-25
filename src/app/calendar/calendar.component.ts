@@ -36,13 +36,13 @@ export class CalendarComponent implements OnInit {
       if (json.success === 'yes') {
         this.imageGenerationUpdate();
       } else {
-        this.error_text = json['error']
+        this.error_text = json['error'];
       }
     });
   }
 
   imageGenerationUpdate() {
-    let cache_busting = '?m=' + Math.floor((Math.random()*100000)).toString();
+    const cache_busting = '?m=' + Math.floor((Math.random() * 100000)).toString();
     this.froggedCurrentWeek = environment.baseUrl + '/api/stats/img/calendar_frogged_now' + cache_busting;
     this.froggedNextWeek = environment.baseUrl + '/api/stats/img/calendar_frogged_next' + cache_busting;
     this.artifactCurrentWeek = environment.baseUrl + '/api/stats/img/calendar_artifact_fr_now' + cache_busting;

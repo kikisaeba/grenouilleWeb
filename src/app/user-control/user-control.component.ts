@@ -40,17 +40,17 @@ export class UserControlComponent implements OnInit {
   }
 
   refreshUI() {
-    let options = {
-      params: {data: JSON.stringify({limit: this.pageSize, offset: this.pageIndex*this.pageSize})},
+    const options = {
+      params: {data: JSON.stringify({limit: this.pageSize, offset: this.pageIndex * this.pageSize})},
     };
     this.http.get<APIResult>(environment.baseUrl + '/api/auth/user/scope/list', options ).subscribe(json => {
       if (json.success === 'yes') {
         this.error_text = undefined;
-        let result = (<APIResultUserScopeList>json.payload);
+        const result = (<APIResultUserScopeList>json.payload);
         this.totalDisplay = result.total;
-        let new_data = [];
-        for (let user of result.users) {
-          let user_data = {
+        const new_data = [];
+        for (const user of result.users) {
+          const user_data = {
             id: user.id,
             user_scope: user.scopes.indexOf('user_scope') >= 0,
             calendar: user.scopes.indexOf('calendar') >= 0,
@@ -77,10 +77,11 @@ export class UserControlComponent implements OnInit {
 
   onCheck(event, id, scope) {
     let url = 'remove';
-    if (event.checked)
+    if (event.checked) {
       url = 'add';
+    }
 
-    let payload = {
+    const payload = {
       id: id,
       scopes: [scope]
     };

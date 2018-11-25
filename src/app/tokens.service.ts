@@ -21,11 +21,12 @@ export class TokensService {
     private http: HttpClient
   ) { }
 
-  loadRefreshToken(){
+  loadRefreshToken() {
     // Load token from storage
-    let localRefreshToken = localStorage.getItem('refreshToken');
-    if (localRefreshToken != undefined)
+    const localRefreshToken = localStorage.getItem('refreshToken');
+    if (localRefreshToken !== undefined) {
       this.refreshToken = localRefreshToken;
+    }
   }
 
   updateAuthToken(): Observable<APIResult> {
