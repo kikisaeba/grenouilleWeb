@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from "../../environments/environment";
-import { APIResult } from "../APIResults/APIResults";
-import { HttpClient } from "@angular/common/http";
+import { environment } from '../../environments/environment';
+import { APIResult } from '../APIResults/APIResults';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-stats-scene',

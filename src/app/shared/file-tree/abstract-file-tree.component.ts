@@ -1,11 +1,11 @@
-import { HttpClient } from "@angular/common/http";
-import {NestedTreeControl} from "@angular/cdk/tree";
-import {MatTreeNestedDataSource} from "@angular/material";
+import { HttpClient } from '@angular/common/http';
+import {NestedTreeControl} from '@angular/cdk/tree';
+import {MatTreeNestedDataSource} from '@angular/material';
 
-import {environment} from "../../../environments/environment";
-import {of} from "rxjs/internal/observable/of";
+import {environment} from '../../../environments/environment';
+import {of} from 'rxjs/internal/observable/of';
 
-import { APIResult, SimpleFile } from "../../APIResults/APIResults";
+import { APIResult, SimpleFile } from '../../APIResults/APIResults';
 
 
 export abstract class AbstractFileTreeComponent {

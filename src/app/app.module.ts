@@ -4,7 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
-import {MyMaterialsModule} from "./my-materials.module";
+import {MyMaterialsModule} from './my-materials.module';
 import {DndModule} from 'ng2-dnd';
 
 import {AppComponent} from './app.component';
@@ -15,10 +15,10 @@ import {ObsControlComponent} from './obs-control/obs-control.component';
 import {VodManageComponent} from './vod-manage/vod-manage.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import {UserControlComponent} from './user-control/user-control.component';
-import {StatsCsvComponent} from "./stats-csv/stats-csv.component";
-import {StatsSceneComponent} from "./stats-scene/stats-scene.component";
-import {StatsSceneControlComponent} from "./stats-scene-control/stats-scene-control.component";
-import {CalendarComponent} from "./calendar/calendar.component";
+import {StatsCsvComponent} from './stats-csv/stats-csv.component';
+import {StatsSceneComponent} from './stats-scene/stats-scene.component';
+import {StatsSceneControlComponent} from './stats-scene-control/stats-scene-control.component';
+import {CalendarComponent} from './calendar/calendar.component';
 
 @NgModule({
   declarations: [

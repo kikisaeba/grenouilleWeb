@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TokensService } from "../tokens.service";
-import {environment} from "../../environments/environment";
-import {UserService} from "../user.service";
+import { TokensService } from '../tokens.service';
+import {environment} from '../../environments/environment';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-index',

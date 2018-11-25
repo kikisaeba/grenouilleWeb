@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
-import {TokensService} from "../tokens.service";
-import {APIResult, APIResultVODFileList} from "../APIResults/APIResults";
-import {environment} from "../../environments/environment";
-import {UserService} from "../user.service";
-import { AbstractFileTreeComponent } from '../shared/file-tree/abstract-file-tree.component'
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {TokensService} from '../tokens.service';
+import {APIResult, APIResultVODFileList} from '../APIResults/APIResults';
+import {environment} from '../../environments/environment';
+import {UserService} from '../user.service';
+import { AbstractFileTreeComponent } from '../shared/file-tree/abstract-file-tree.component';
 
 @Component({
   selector: 'app-vod-manage',

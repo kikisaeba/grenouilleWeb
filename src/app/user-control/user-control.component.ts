@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
-import {TokensService} from "../tokens.service";
-import {APIResult, APIResultUserScopeList} from "../APIResults/APIResults";
-import {environment} from "../../environments/environment";
-import {UserService} from "../user.service";
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {TokensService} from '../tokens.service';
+import {APIResult, APIResultUserScopeList} from '../APIResults/APIResults';
+import {environment} from '../../environments/environment';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-user-control',

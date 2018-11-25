@@ -1,6 +1,6 @@
 import { UserService } from './user.service';
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['token'] != undefined) {
         localStorage.setItem('refreshToken', params['token']);
-        this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams: { }, queryParamsHandling: "merge", replaceUrl: true });
+        this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams: { }, queryParamsHandling: 'merge', replaceUrl: true });
         this.userService.updateUserMeGet();
       }
     });

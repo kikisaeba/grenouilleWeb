@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {TokensService} from "../tokens.service";
-import {UserService} from "../user.service";
-import {Router} from "@angular/router";
-import {APIResult, APIResultStatsCSVGet} from "../APIResults/APIResults";
-import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import CsvHelper from "../shared/csv/csv_helpers";
+import {TokensService} from '../tokens.service';
+import {UserService} from '../user.service';
+import {Router} from '@angular/router';
+import {APIResult, APIResultStatsCSVGet} from '../APIResults/APIResults';
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import CsvHelper from '../shared/csv/csv_helpers';
 
 @Component({
   selector: 'app-stats-csv',

@@ -3,7 +3,7 @@ import {
   MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule,
   MatSlideToggleModule, MatRadioModule, MatTableModule, MatCheckboxModule, MatPaginatorModule, MatTooltipModule,
   MatTreeModule, MatInputModule, MatTabsModule, MatExpansionModule, MatSelectModule, MatProgressSpinnerModule
-} from "@angular/material";
+} from '@angular/material';
 
 
 @NgModule({

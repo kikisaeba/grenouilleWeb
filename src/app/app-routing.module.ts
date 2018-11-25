@@ -1,13 +1,13 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IndexComponent } from "./index/index.component";
-import { ObsControlComponent } from "./obs-control/obs-control.component"
-import { VodManageComponent } from "./vod-manage/vod-manage.component";
-import { UserControlComponent } from "./user-control/user-control.component";
-import { StatsCsvComponent } from "./stats-csv/stats-csv.component";
-import { StatsSceneComponent } from "./stats-scene/stats-scene.component";
-import { StatsSceneControlComponent } from "./stats-scene-control/stats-scene-control.component";
-import { CalendarComponent } from "./calendar/calendar.component";
+import { IndexComponent } from './index/index.component';
+import { ObsControlComponent } from './obs-control/obs-control.component';
+import { VodManageComponent } from './vod-manage/vod-manage.component';
+import { UserControlComponent } from './user-control/user-control.component';
+import { StatsCsvComponent } from './stats-csv/stats-csv.component';
+import { StatsSceneComponent } from './stats-scene/stats-scene.component';
+import { StatsSceneControlComponent } from './stats-scene-control/stats-scene-control.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },

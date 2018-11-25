@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {TokensService} from "../tokens.service";
-import {HttpClient} from "@angular/common/http";
+import {TokensService} from '../tokens.service';
+import {HttpClient} from '@angular/common/http';
 
 import {
   APIResult,
@@ -8,11 +8,11 @@ import {
   APIResultOBSSceneList,
   APIResultOBSStatus, APIResultVODDiskUsage,
   APIResultVODFileList
-} from "../APIResults/APIResults";
-import {environment} from "../../environments/environment";
-import {Router} from "@angular/router";
-import {UserService} from "../user.service";
-import { AbstractFileTreeComponent } from '../shared/file-tree/abstract-file-tree.component'
+} from '../APIResults/APIResults';
+import {environment} from '../../environments/environment';
+import {Router} from '@angular/router';
+import {UserService} from '../user.service';
+import { AbstractFileTreeComponent } from '../shared/file-tree/abstract-file-tree.component';
 
 @Component({
   selector: 'app-obs-control',

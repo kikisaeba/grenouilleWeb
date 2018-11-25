@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import CsvHelper from '../shared/csv/csv_helpers'
-import {environment} from "../../environments/environment";
+import CsvHelper from '../shared/csv/csv_helpers';
+import {environment} from '../../environments/environment';
 import {
   APIResult,
   APIResultStatsCSVGet, APIResultStatsSceneGet,
   APIResultStatsSceneStatusGet,
   APIResultStatsSceneStatusUpdate, APIResultStatsSceneUpdate
-} from "../APIResults/APIResults";
-import {HttpClient} from "@angular/common/http";
+} from '../APIResults/APIResults';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-stats-scene',

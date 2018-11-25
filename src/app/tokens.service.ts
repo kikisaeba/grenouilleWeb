@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
-import { APIResult, APIResultAuthTokenGet } from "./APIResults/APIResults";
+import { APIResult, APIResultAuthTokenGet } from './APIResults/APIResults';
 import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';

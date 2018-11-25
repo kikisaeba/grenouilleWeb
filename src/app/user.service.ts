@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {APIResult, APIResultUserMeDetails} from "./APIResults/APIResults";
-import {environment} from "../environments/environment";
-import {TokensService} from "./tokens.service";
-import {HttpClient} from "@angular/common/http";
+import {APIResult, APIResultUserMeDetails} from './APIResults/APIResults';
+import {environment} from '../environments/environment';
+import {TokensService} from './tokens.service';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
