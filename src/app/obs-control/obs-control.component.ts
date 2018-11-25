@@ -21,14 +21,14 @@ import { AbstractFileTreeComponent } from '../shared/file-tree/abstract-file-tre
 })
 export class ObsControlComponent extends AbstractFileTreeComponent implements OnInit {
 
-  statusStreaming: boolean = false;
-  statusRecording: boolean = false;
+  statusStreaming = false;
+  statusRecording = false;
   scenes: string[] = [];
-  activeScene: string = '';
+  activeScene = '';
 
-  statusStreamingUI: boolean = false;
-  statusRecordingUI: boolean = false;
-  activeSceneUI: string = '';
+  statusStreamingUI = false;
+  statusRecordingUI = false;
+  activeSceneUI = '';
   obs_playlist: string[] = [];
   removedFromPlaylist: string[] = [];
 

@@ -11,7 +11,7 @@ import {UserService} from '../user.service';
 })
 export class IndexComponent implements OnInit {
 
-  authToken: string = '';
+  authToken = '';
 
   constructor(
     public tokenService: TokensService,

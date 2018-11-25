@@ -14,18 +14,18 @@ import CsvHelper from '../shared/csv/csv_helpers';
 })
 export class StatsCsvComponent implements OnInit {
 
-  selectedTabIndex: number = 0;
+  selectedTabIndex = 0;
   csvSave: string = undefined;
   csvContent: string[] = ['', '', ''];
   csvKeys: string[] = ['preti8_teams', 'preti8_players', 'ti8_groups'];
   dataTrees: Object[][] = [[], [], []];
-  error_text: string = '';
-  imageCacheBusting: string = '';
-  selectedTeam: string = '39';
-  selectedPlayer: string = '86745912';
-  generatingImage: boolean = false;
+  error_text = '';
+  imageCacheBusting = '';
+  selectedTeam = '39';
+  selectedPlayer = '86745912';
+  generatingImage = false;
 
-  baseUrl: string = '';
+  baseUrl = '';
 
   constructor(
     private tokenService: TokensService,

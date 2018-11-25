@@ -15,9 +15,9 @@ export class UserControlComponent implements OnInit {
 
   displayColumn = ['id', 'user_scope', 'calendar', 'obs_control', 'vod_manage', 'vod_delete', 'stats_manage', 'stats_manage_scene'];
   usersData = [];
-  totalDisplay: number = 0;
-  pageSize: number = 10;
-  pageIndex: number = 0;
+  totalDisplay = 0;
+  pageSize = 10;
+  pageIndex = 0;
 
   error_text: string = undefined;
 
