@@ -13,7 +13,7 @@ export class StatsSceneComponent implements OnInit {
   sceneImg: string;
   continue_scene: boolean;
 
-  refreshInterval: number;
+  refreshInterval: any;
 
   constructor(
     private http: HttpClient
