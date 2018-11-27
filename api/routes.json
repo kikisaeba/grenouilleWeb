@@ -1,0 +1,5 @@
+{
+  "/api/auth/token": "/auth_token",
+  "/api/auth/user/scope/add": "/auth_user_scope_add",
+  "/api/stats/scene/get": "/stats_scene_get"
+}

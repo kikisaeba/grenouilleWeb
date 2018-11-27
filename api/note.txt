@@ -1,0 +1,45 @@
+API
+---
+GET  /api/auth/login/steam
+GET  /api/auth/token
+POST /api/auth/user/scope/add
+GET  /api/auth/user/scope/list
+POST /api/auth/user/scope/remove
+
+POST /api/calendar/generate
+
+GET  /api/obs/playlist/get
+POST /api/obs/playlist/update
+POST /api/obs/record/start
+POST /api/obs/record/stop
+POST /api/obs/rtmp/restart
+GET  /api/obs/scene/list
+POST /api/obs/scene/update
+GET  /api/obs/status
+POST /api/obs/stream/start
+POST /api/obs/stream/stop
+
+GET  /api/stats/csv/get
+POST /api/stats/csv/img/generate
+POST /api/stats/csv/update
+GET  /api/stats/scene/get
+GET  /api/stats/scene/status/get
+POST /api/stats/scene/status/update
+POST /api/stats/scene/update
+
+GET  /api/user/me/details
+
+POST /api/vod/dir/create
+GET  /api/vod/disk_usage
+POST /api/vod/file/delete
+POST /api/vod/file/move
+
+Static
+------
+/api/stats/img/preview
+/api/stats/img/scene
+/api/stats/img/empty
+/api/stats/img/calendar_artifact_fr_next
+/api/stats/img/calendar_artifact_fr_now
+/api/stats/img/calendar_frogged_next
+/api/stats/img/calendar_frogged_now
